@@ -48,7 +48,7 @@ def query_graph():
         question = input("\n💬 Enter your question (or 'exit' to quit): ")
         if question.lower() in {"exit", "quit"}:
             break
-        agent.ask(question)
+        agent.run_query(question)
 
 
 if __name__ == "__main__":
