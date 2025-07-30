@@ -35,13 +35,16 @@ class DocumentIngestor:
             chunk_size=chunk_size, chunk_overlap=chunk_overlap
         )
         chunks = splitter.split_documents(docs)
-        return [chunk.page_content for chunk in chunks]
+        for idx, chunk in enumerate(chunks):
+            chunk.metadata["chunk_id"] = f"{self.doc_id}:{idx}"
+        return chunks
 
     def ingest(self):
         chunks = self.load_chunks()
         logging.info(f"Loaded {len(chunks)} chunks from {self.pdf_path}")
         with self.driver.session() as session:
-            for i, text in enumerate(chunks):
+            for i, chunk in enumerate(chunks):
+                text = chunk.page_content  # <--- FIX: get the text from the Document
                 chunk_id = f"{self.doc_id}:{i}"
                 emb = self.embedder.embed_query(text)
                 session.run(

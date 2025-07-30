@@ -5,6 +5,9 @@ from document_ingestor import DocumentIngestor
 from semantic_agent import SemanticAgent
 from dotenv import load_dotenv
 
+from triplet_extractor import TripletExtractor
+
+
 PROCESSED_LOG = Path("processed.json")
 
 load_dotenv()
@@ -32,6 +35,8 @@ def process_new_files():
         print("✅ No new files to process.")
         return
 
+    extractor = TripletExtractor()  # <--- Move this here for efficiency
+
     for pdf_name in new_files:
         pdf_path = data_dir / pdf_name
         doc_id = pdf_path.stem
@@ -39,11 +44,15 @@ def process_new_files():
 
         # Ingest the document, creating nodes with embeddings
         ingestor = DocumentIngestor(str(pdf_path), doc_id)
-        ingestor.ingest()
+        chunks = (
+            ingestor.load_chunks()
+        )  # <-- Get the chunks (do NOT call .ingest(), since it does all writing)
+        ingestor.ingest()  # <-- Still call this to store Chunks and embeddings
 
-        # Optionally process for triplets/entities (if implemented)
-        # You may want to implement extractor.process_chunks(chunks) within ingestor.ingest()
-        # For now, we'll leave it as a placeholder
+        # Run triplet/entity extraction on those chunks!
+        extractor.process_chunks(
+            chunks
+        )  # <-- This will create & relate entities in Neo4j
 
         processed.add(pdf_name)
         save_processed(processed)  # Save after each file, safer for crash recovery
