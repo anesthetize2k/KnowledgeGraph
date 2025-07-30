@@ -8,3 +8,4 @@ __pycache__/
 !/data/.gitkeep
 # Runtime processing logs
 processed.json
+/archive/

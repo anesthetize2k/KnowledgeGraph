@@ -1,61 +1,46 @@
-from langchain_openai import ChatOpenAI
-from langchain_community.graphs import Neo4jGraph
-from langchain.chains.graph_qa.cypher import GraphCypherQAChain
-from langchain.prompts import PromptTemplate
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from neo4j import GraphDatabase
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 
 class SemanticAgent:
     def __init__(self):
-        self.graph = Neo4jGraph(
-            url=os.getenv("NEO4J_URI"),
-            username=os.getenv("NEO4J_USERNAME"),
-            password=os.getenv("NEO4J_PASSWORD"),
+        self.embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+        self.llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+        self.driver = GraphDatabase.driver(
+            os.getenv("NEO4J_URI"),
+            auth=(os.getenv("NEO4J_USERNAME"), os.getenv("NEO4J_PASSWORD")),
         )
 
-        self.llm = ChatOpenAI(model="gpt-4o", temperature=0)
+    def get_relevant_chunks(self, question, top_k=5):
+        embedding = self.embeddings.embed_query(question)
+        with self.driver.session() as session:
+            result = session.run(
+                """
+                CALL db.index.vector.queryNodes('vector', $topK, $embedding)
+                YIELD node, score
+                RETURN node.text AS chunk, score
+                ORDER BY score DESC
+                LIMIT $topK
+                """,
+                embedding=embedding,
+                topK=top_k,
+            )
+            return [row["chunk"] for row in result]
 
-        self.cypher_prompt = PromptTemplate.from_template(
-            """
-        You are an expert at writing Cypher for Neo4j.
+    def run_query(self, question):
+        chunks = self.get_relevant_chunks(question)
+        if not chunks:
+            return "🕵️ No relevant information found in the knowledge graph."
+        # Compose a system prompt for the LLM
+        context = "\n---\n".join(chunks)
+        prompt = f"""Answer the following question using only the information in the context below.
 
-        Write a Cypher query that:
-        - Retrieves facts about the person mentioned in the question
-        - Gets all nodes 1-2 hops away from the person
-        - Returns their `name` and `labels`
-        - Uses `labels()` to extract node types
-        - Uses `type()` to get relationship names
+Question: {question}
 
-        Example:
-        Q: Who runs the finance ministry?
-        Cypher:
-        MATCH (p:Person)-[r]-(n)
-        WHERE toLower(p.name) CONTAINS "nirmala"
-        RETURN 
-        p.name AS subject,
-        labels(p) AS subject_type,
-        type(r) AS relation,
-        n.name AS object,
-        labels(n) AS object_type
-        LIMIT 25
+Context:
+{context}
 
-        Now do this:
-        Q: {question}
-        Cypher:
-        """
-        )
-
-        self.chain = GraphCypherQAChain.from_llm(
-            llm=self.llm,
-            graph=self.graph,
-            cypher_prompt=self.cypher_prompt,
-            verbose=True,
-            return_intermediate_steps=True,
-            allow_dangerous_requests=True,
-        )
-
-    def run_query(self, question: str) -> str:
-        return self.chain.run(question)
+Answer:"""
+        response = self.llm.invoke(prompt)
+        return getattr(response, "content", str(response))
