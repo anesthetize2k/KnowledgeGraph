@@ -2,10 +2,12 @@ from pathlib import Path
 import json
 
 from document_ingestor import DocumentIngestor
-from triplet_extractor import TripletExtractor
 from semantic_agent import SemanticAgent
+from dotenv import load_dotenv
 
 PROCESSED_LOG = Path("processed.json")
+
+load_dotenv()
 
 
 def load_processed():
@@ -30,25 +32,34 @@ def process_new_files():
         print("✅ No new files to process.")
         return
 
-    extractor = TripletExtractor()
     for pdf_name in new_files:
         pdf_path = data_dir / pdf_name
+        doc_id = pdf_path.stem
         print(f"\n📄 Processing: {pdf_name}")
-        chunks = DocumentIngestor(str(pdf_path)).load_chunks()
-        extractor.process_chunks(chunks)
-        processed.add(pdf_name)
 
-    save_processed(processed)
+        # Ingest the document, creating nodes with embeddings
+        ingestor = DocumentIngestor(str(pdf_path), doc_id)
+        ingestor.ingest()
+
+        # Optionally process for triplets/entities (if implemented)
+        # You may want to implement extractor.process_chunks(chunks) within ingestor.ingest()
+        # For now, we'll leave it as a placeholder
+
+        processed.add(pdf_name)
+        save_processed(processed)  # Save after each file, safer for crash recovery
+
     print("\n✅ All new files processed.")
 
 
 def query_graph():
     agent = SemanticAgent()
     while True:
-        question = input("\n💬 Enter your question (or 'exit' to quit): ")
+        question = input("\n💬 Enter your question (or 'exit' to quit): ").strip()
         if question.lower() in {"exit", "quit"}:
             break
-        agent.run_query(question)
+
+        answer = agent.run_query(question)
+        print(f"\n🤖 {answer}")
 
 
 if __name__ == "__main__":
