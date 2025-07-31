@@ -2,7 +2,7 @@
 from typing import TypedDict, List, Tuple
 
 
-class QueryState(TypedDict):
+class QueryState(TypedDict, total=False):
     question: str
     embedding: List[float]
     chunk_ids: List[str]
@@ -10,3 +10,4 @@ class QueryState(TypedDict):
     mentions: List[Tuple[str, str]]
     expansion_triples: List[str]
     final_answer: str
+    context: str

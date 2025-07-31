@@ -25,3 +25,7 @@ graph.add_edge("expand_neighbors", "compose_context")
 graph.add_edge("compose_context", "generate_answer")
 
 app = graph.compile()
+
+if __name__ == "__main__":
+    compiled = graph.compile()
+    compiled.get_graph().print_ascii()

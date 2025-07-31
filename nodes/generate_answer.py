@@ -6,6 +6,11 @@ llm = ChatOpenAI(model="gpt-4.1-nano", temperature=0)
 
 
 def generate_answer(state: QueryState) -> QueryState:
+    if "context" not in state:
+        raise ValueError(
+            "Missing 'context' in state. Available keys: " + str(list(state.keys()))
+        )
+
     context = state["context"]
     question = state["question"]
 
