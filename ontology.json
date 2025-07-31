@@ -64,7 +64,8 @@
     "operation",
     "staff_category",
     "tradition",
-    "identifier"
+    "identifier",
+    "committee"
   ],
   "relation_types": [
     "has_minister",
