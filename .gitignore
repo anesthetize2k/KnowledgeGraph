@@ -10,3 +10,6 @@ __pycache__/
 # Runtime processing logs
 processed.json
 /archive/
+/Wikis/*
+!/Wikis/.gitkeep
+schema_update_suggestions.json

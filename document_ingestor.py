@@ -1,84 +1,95 @@
 import os
-import logging
-from pathlib import Path
-
-from langchain_community.document_loaders import PyMuPDFLoader
+import hashlib
+from dotenv import load_dotenv
+from langchain_community.document_loaders import PyMuPDFLoader, TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_openai import OpenAIEmbeddings
 from neo4j import GraphDatabase
+from litellm_wrapper import LiteLLMEmbeddings
+from langchain.schema import Document
 
-logging.basicConfig(level=logging.INFO)
+load_dotenv()
 
 
 class DocumentIngestor:
-    """
-    Loads a PDF, splits into overlapping chunks, computes embeddings, and writes nodes to Neo4j.
-    """
+    def __init__(self):
+        self.embedder = LiteLLMEmbeddings(model=os.getenv("LITELLM_EMBED_MODEL", "text-embedding-3-large"))
 
-    def __init__(
-        self, pdf_path, doc_id, neo4j_uri=None, neo4j_user=None, neo4j_pwd=None
-    ):
-        self.pdf_path = pdf_path
-        self.doc_id = doc_id
-        self.neo4j_uri = neo4j_uri or os.environ.get("NEO4J_URI")
-        self.neo4j_user = os.environ.get("NEO4J_USERNAME")
-        self.neo4j_pwd = os.environ.get("NEO4J_PASSWORD")
         self.driver = GraphDatabase.driver(
-            self.neo4j_uri, auth=(self.neo4j_user, self.neo4j_pwd)
+            os.getenv("NEO4J_URI"),
+            auth=(os.getenv("NEO4J_USERNAME"), os.getenv("NEO4J_PASSWORD")),
         )
-        self.embedder = OpenAIEmbeddings(model="text-embedding-3-small")
 
-    def load_chunks(self, chunk_size=500, chunk_overlap=100):
-        loader = PyMuPDFLoader(str(self.pdf_path))
-        docs = loader.load()
-        splitter = RecursiveCharacterTextSplitter(
-            chunk_size=chunk_size, chunk_overlap=chunk_overlap
+        self.text_splitter = RecursiveCharacterTextSplitter(
+            chunk_size=500, chunk_overlap=50, length_function=len, is_separator_regex=False
         )
-        chunks = splitter.split_documents(docs)
-        for idx, chunk in enumerate(chunks):
-            chunk.metadata["chunk_id"] = f"{self.doc_id}:{idx}"
-        return chunks
 
-    def ingest(self):
-        chunks = self.load_chunks()
-        logging.info(f"Loaded {len(chunks)} chunks from {self.pdf_path}")
+    def _get_text_preview(self, file_path: str, max_chars: int = 6000) -> str:
+        docs = self._load_document(file_path)
+        text = " ".join([d.page_content for d in docs])
+        return text[:max_chars]
+
+    def _hash_file(self, file_path: str) -> str:
+        hasher = hashlib.md5()
+        with open(file_path, "rb") as f:
+            while chunk := f.read(8192):
+                hasher.update(chunk)
+        return hasher.hexdigest()
+
+    def _load_document(self, file_path: str):
+        ext = os.path.splitext(file_path)[1].lower()
+        if ext == ".pdf":
+            return PyMuPDFLoader(file_path).load()
+        elif ext in [".md", ".txt"]:
+            try:
+                with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+                    text = f.read()
+                return [Document(page_content=text, metadata={"source": file_path})]
+            except Exception as e:
+                raise ValueError(f"Failed to load markdown/txt file {file_path}: {e}")
+        else:
+            raise ValueError(f"Unsupported file type: {ext}")
+
+    def process(self, file_path: str):
+        docs = self._load_document(file_path)
+        chunks = self.text_splitter.split_documents(docs)
+
+        file_hash = self._hash_file(file_path)
+        file_name = os.path.basename(file_path)
+
         with self.driver.session() as session:
+            session.run(
+                """
+                MERGE (d:Document {source_id: $source_id})
+                SET d.name = $name
+                """,
+                source_id=file_hash,
+                name=file_name,
+            )
+
             for i, chunk in enumerate(chunks):
-                text = chunk.page_content  # <--- FIX: get the text from the Document
-                chunk_id = f"{self.doc_id}:{i}"
-                emb = self.embedder.embed_query(text)
+                chunk_id = f"{file_hash}_{i}"
+                chunk_text = chunk.page_content
+
+                try:
+                    embedding = self.embedder.embed_query(chunk_text)
+                except Exception as e:
+                    print(f"❌ Failed to embed chunk {i}: {e}")
+                    continue
+
                 session.run(
                     """
-                    MERGE (d:Document {source_id: $doc_id})
                     MERGE (c:Chunk {chunk_id: $chunk_id})
-                        ON CREATE SET c.text = $text, c.embedding = $embedding
+                    SET c.text = $text,
+                        c.embedding = $embedding
+                    MERGE (d:Document {source_id: $source_id})
                     MERGE (d)-[:HAS_CHUNK]->(c)
                     """,
-                    doc_id=self.doc_id,
                     chunk_id=chunk_id,
-                    text=text,
-                    embedding=emb,
+                    text=chunk_text,
+                    embedding=embedding,
+                    source_id=file_hash,
                 )
-                if i % 10 == 0 or i == len(chunks) - 1:
-                    logging.info(f"Ingested chunk {i+1}/{len(chunks)}")
-        logging.info(f"Successfully ingested all {len(chunks)} chunks into Neo4j.")
 
+                chunk.metadata["chunk_id"] = chunk_id
 
-if __name__ == "__main__":
-    import argparse
-
-    parser = argparse.ArgumentParser(
-        description="Ingest a PDF into Neo4j as Document and Chunk nodes with embeddings."
-    )
-    parser.add_argument("pdf_path", type=str, help="Path to PDF file")
-    parser.add_argument(
-        "--doc_id", type=str, required=True, help="Unique document ID for this PDF"
-    )
-    args = parser.parse_args()
-
-    ingestor = DocumentIngestor(
-        pdf_path=args.pdf_path,
-        doc_id=args.doc_id,
-        # Optionally: neo4j_uri=..., neo4j_user=..., neo4j_pwd=...
-    )
-    ingestor.ingest()
+        return chunks

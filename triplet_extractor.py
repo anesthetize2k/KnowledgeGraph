@@ -1,182 +1,157 @@
-import os
-import ast
-import json
-from typing import List, Tuple
+# triplet_extractor.py
+import json, re, os
+from typing import List, Tuple, Dict
 from dotenv import load_dotenv
 from neo4j import GraphDatabase
-from langchain_openai import ChatOpenAI
-from langchain_core.prompts import PromptTemplate
-import re
+from litellm_wrapper import LiteLLMChat
 
 load_dotenv()
 
-ONTOLOGY_PATH = "ontology.json"
+# Allowed by your ontology
+ALLOWED_TYPES = {
+    "brand","installment","studio","publisher","platform","market",
+    "player_segment","brand_metric","research_study","time_period",
+    "insight","competitor","metric_value"
+}
 
+ALLOWED_RELS = {
+    "belongs_to_brand","developed_by","published_by","released_on",
+    "measured_by","measured_for","collected_in","covers_period",
+    "targets_segment","analyzes","compares_with","has_insight","documented_in"
+}
 
-def load_ontology():
-    with open(ONTOLOGY_PATH, "r", encoding="utf-8") as f:
-        return json.load(f)
+# Canonical synonyms / normalizer
+ALIASES = {
+    # common brand aliases
+    "ac": "Assassin's Creed",
+    "assassin’s creed": "Assassin's Creed",
+    "assassins creed": "Assassin's Creed",
+    "assassin's creed": "Assassin's Creed",
 
+    # platforms
+    "ps5": "PlayStation 5",
+    "xbsx": "Xbox Series X|S",
+}
 
-def save_ontology(ontology):
-    with open(ONTOLOGY_PATH, "w", encoding="utf-8") as f:
-        json.dump(ontology, f, indent=2, ensure_ascii=False)
+GENERIC_BAD = {
+    "these elements","brand","element","elements","topic","section",
+    "this","that","it","intro","summary","n/a","none",""
+}
 
+PROMPT = """You are an information extraction model.
 
-def safe_label(label):
-    label = label.strip().title()
-    label = re.sub(r"[\s\-]", "", label)  # Remove space and hyphen
-    label = re.sub(r"\W", "", label)  # Remove all non-word chars
-    return label
+Extract FACTUAL 5-tuples from the passage as:
+[head, head_type, relation, tail, tail_type]
 
+Rules:
+- head_type/tail_type MUST be one of:
+  brand, installment, studio, publisher, platform, market, player_segment,
+  brand_metric, research_study, time_period, insight, competitor, metric_value
+- relation MUST be one of:
+  belongs_to_brand, developed_by, published_by, released_on,
+  measured_by, measured_for, collected_in, covers_period,
+  targets_segment, analyzes, compares_with, has_insight, documented_in
+- Use canonical names (e.g., "Assassin's Creed", "PlayStation 5").
+- Ignore vague fragments like "these elements", "brand", "topic".
+- Dates go into time_period (e.g., "Q1 2024", "June 2025").
+- Numbers/percentages go into metric_value (with unit if present).
+- Output ONLY a JSON list of 5-tuples. No prose.
+
+Examples:
+Input: "The Ministry of Finance, headed by Nirmala Sitharaman, announced the Fiscal Responsibility Act on 1 Feb 2024."
+Output:
+[
+  ["Ministry of Finance","ministry","has_minister","Nirmala Sitharaman","person"],
+  ["Ministry of Finance","ministry","announced","Fiscal Responsibility Act","policy"],
+  ["Fiscal Responsibility Act","policy","start_date","1 Feb 2024","date"]
+]
+
+Input:
+"Assassin’s Creed Shadows is developed by Ubisoft Quebec and released on PS5 and PC in 2025."
+Output:
+[
+  ["Assassin's Creed Shadows","installment","belongs_to_brand","Assassin's Creed","brand"],
+  ["Assassin's Creed Shadows","installment","developed_by","Ubisoft Quebec","studio"],
+  ["Assassin's Creed Shadows","installment","released_on","PlayStation 5","platform"],
+  ["Assassin's Creed Shadows","installment","released_on","PC","platform"],
+  ["Assassin's Creed Shadows","installment","covers_period","2025","time_period"]
+]
+
+Passage:
+\"\"\"{text}\"\"\""""
+
+def _canon(s: str) -> str:
+    if not s: return ""
+    t = re.sub(r"\s+", " ", s.strip().strip("-–—·•:")).strip()
+    low = t.lower()
+    if low in ALIASES:
+        return ALIASES[low]
+    # strip ™ ® quotes
+    t = t.replace("™","").replace("®","").strip("'\"“”")
+    return t
+
+def _is_bad(s: str) -> bool:
+    return s.lower() in GENERIC_BAD or len(s.strip()) < 2
+
+def _valid_type(t: str) -> bool:
+    return t in ALLOWED_TYPES
+
+def _valid_rel(r: str) -> bool:
+    return r in ALLOWED_RELS
 
 class TripletExtractor:
     def __init__(self):
+        self.llm = LiteLLMChat()
         self.driver = GraphDatabase.driver(
             os.getenv("NEO4J_URI"),
-            auth=(os.getenv("NEO4J_USERNAME"), os.getenv("NEO4J_PASSWORD")),
+            auth=(os.getenv("NEO4J_USERNAME"), os.getenv("NEO4J_PASSWORD"))
         )
-        self.llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
-        # Load ontology and store as class variables
-        self.ontology = load_ontology()
-        self.entity_types = self.ontology["entity_types"]
-        self.relation_types = self.ontology["relation_types"]
-
-        entity_types_str = ", ".join(self.entity_types)
-        relation_types_str = ", ".join(self.relation_types)
-
-        self.prompt = PromptTemplate.from_template(
-            f"""
-You are an expert in extracting structured information from Indian government documents.
-
-Extract all factual relationships from the text below as [SUBJECT, SUBJECT_TYPE, RELATION, OBJECT, OBJECT_TYPE].
-
-Only use the following allowed entity types: {entity_types_str}
-Only use the following allowed relation types: {relation_types_str}
-
-If a new entity or relation type is absolutely needed, invent it - while sticking to the format of existing entities and relations such that they can be generalized and are not too specific, flag it with NEW_ENTITY_TYPE or NEW_RELATION_TYPE, and output it.
-(Example: ["X", "NEW_ENTITY_TYPE:mission", "has_objective", "Y", "organization"])
-
-Example:
-prompt: “The Ministry of Finance, headed by Nirmala Sitharaman, announced the Fiscal Responsibility Act on 1 Feb 2024. ₹1 lakh crore was allocated to the PMJDY scheme, which is implemented by the Department of Financial Services.”
-output:
-[
-["Ministry of Finance", "ministry", "has_minister", "Nirmala Sitharaman", "person"],
-["Nirmala Sitharaman", "person", "has_title", "Finance Minister", "title"],
-["Ministry of Finance", "ministry", "announced", "Fiscal Responsibility Act", "policy"],
-["Fiscal Responsibility Act", "policy", "start_date", "1 Feb 2024", "date"],
-["PMJDY", "scheme", "implemented_by", "Department of Financial Services", "department"]
-]
-
-Now process this:
-```{{text}}```
-output:
-            """
-        )
-        self.chain = self.prompt | self.llm
-
-    def parse_triplets(self, raw_output: str):
-        """Parse and return triplets, track any new types for ontology update."""
-        cleaned = (
-            raw_output.replace("```json", "")
-            .replace("```", "")
-            .replace("\n", "")
-            .strip()
-        )
-        print("📥 Cleaned raw input to eval:\n", cleaned)
+    def extract(self, text: str) -> List[Tuple[str,str,str,str,str]]:
+        out = self.llm.invoke(PROMPT.format(text=text[:3500]))
         try:
-            triplet_list = ast.literal_eval(cleaned)
-        except Exception as e:
-            print("⚠️ Failed to parse structured triplets:", e)
-            return [], set(), set()
+            data = json.loads(out)
+        except Exception:
+            return []
 
-        valid = []
-        new_entities, new_relations = set(), set()
-        for triplet in triplet_list:
-            if isinstance(triplet, list) and len(triplet) == 5:
-                s, s_type, p, o, o_type = (x.strip(" \"'[]") for x in triplet)
-                if s_type.startswith("NEW_ENTITY_TYPE:"):
-                    ent_type = s_type.split(":", 1)[1].strip().lower()
-                    new_entities.add(ent_type)
-                    s_type = ent_type
-                if o_type.startswith("NEW_ENTITY_TYPE:"):
-                    ent_type = o_type.split(":", 1)[1].strip().lower()
-                    new_entities.add(ent_type)
-                    o_type = ent_type
-                if p.startswith("NEW_RELATION_TYPE:"):
-                    rel_type = p.split(":", 1)[1].strip().lower()
-                    new_relations.add(rel_type)
-                    p = rel_type
-                valid.append((s, s_type, p, o, o_type))
-        return valid, new_entities, new_relations
+        cleaned = []
+        for tup in data:
+            if not (isinstance(tup, list) and len(tup) == 5):
+                continue
+            h, ht, r, t, tt = tup
+            h, t = _canon(str(h)), _canon(str(t))
+            ht, tt, r = str(ht), str(tt), str(r)
 
-    def update_ontology(self, new_entity_types, new_relation_types):
-        updated = False
-        for ent in new_entity_types:
-            if ent not in self.entity_types:
-                print(f"🆕 Adding new entity type to ontology: {ent}")
-                self.entity_types.append(ent)
-                updated = True
-        for rel in new_relation_types:
-            if rel not in self.relation_types:
-                print(f"🆕 Adding new relation type to ontology: {rel}")
-                self.relation_types.append(rel)
-                updated = True
-        if updated:
-            self.ontology["entity_types"] = self.entity_types
-            self.ontology["relation_types"] = self.relation_types
-            save_ontology(self.ontology)
+            if _is_bad(h) or _is_bad(t):            # drop generic junk
+                continue
+            if not _valid_type(ht) or not _valid_type(tt):
+                continue
+            if not _valid_rel(r):
+                continue
 
-    def insert_into_neo4j(self, triplets, chunk_id):
-        with self.driver.session() as session:
-            for s, s_type, p, o, o_type in triplets:
-                s_label = safe_label(s_type)
-                o_label = safe_label(o_type)
-                rel_type = p.strip().upper().replace(" ", "_").replace("-", "_")
-                # Create or update the entity nodes and their relation
-                query = f"""
-                MERGE (a:{s_label} {{name: $s}})
-                MERGE (b:{o_label} {{name: $o}})
-                MERGE (a)-[r:{rel_type}]->(b)
+            cleaned.append((h, ht, r, t, tt))
+        return cleaned
+
+    def upsert(self, triples: List[Tuple[str,str,str,str,str]]):
+        if not triples: return
+        with self.driver.session() as sess:
+            for h, ht, r, t, tt in triples:
+                # Write with label guard + MERGE by (label, name)
+                cypher = f"""
+                MERGE (h:{ht.capitalize()} {{name: $h}})
+                MERGE (t:{tt.capitalize()} {{name: $t}})
+                MERGE (h)-[rel:{r}]->(t)
+                RETURN id(rel) as id
                 """
-                session.run(query, s=s.strip(), o=o.strip())
-                # Also link the chunk to both subject and object entities
-                mention_query = f"""
-                MERGE (c:Chunk {{chunk_id: $chunk_id}})
-                MERGE (a:{s_label} {{name: $s}})
-                MERGE (b:{o_label} {{name: $o}})
-                MERGE (c)-[:MENTIONS]->(a)
-                MERGE (c)-[:MENTIONS]->(b)
-                """
-                session.run(mention_query, chunk_id=chunk_id, s=s.strip(), o=o.strip())
+                try:
+                    sess.run(cypher, h=h, t=t)
+                except Exception as e:
+                    print(f"⚠️ Neo4j write failed for {h}-{r}->{t}: {e}")
 
-    def process_chunks(self, chunks):
-        for i, chunk in enumerate(chunks):
-            print(f"\n📄 Processing chunk {i + 1}/{len(chunks)}")
-            try:
-                response = self.chain.invoke({"text": chunk.page_content})
-                print("📥 Raw triplet output:\n", response.content)
-                triplets, new_ents, new_rels = self.parse_triplets(response.content)
-                if new_ents or new_rels:
-                    self.update_ontology(new_ents, new_rels)
-                if triplets:
-                    # Robustly extract the chunk_id from chunk (prefer metadata)
-                    chunk_id = None
-                    # Try attribute first
-                    if hasattr(chunk, "chunk_id"):
-                        chunk_id = chunk.chunk_id
-                    # Then try metadata
-                    if not chunk_id and hasattr(chunk, "metadata"):
-                        chunk_id = chunk.metadata.get("chunk_id")
-                    # Fallback: use index
-                    if not chunk_id:
-                        chunk_id = f"unknown_chunk_{i}"
-                    self.insert_into_neo4j(triplets, chunk_id)
-                    print(
-                        f"✅ Inserted {len(triplets)} triplets into Neo4j (chunk_id: {chunk_id})"
-                    )
-                else:
-                    print("⚠️ No valid triplets found.")
-            except Exception as e:
-                print(f"❌ Error processing chunk {i + 1}: {e}")
+    def process_chunks(self, chunks: List):
+        for i, ch in enumerate(chunks):
+            txt = ch.page_content
+            triples = self.extract(txt)
+            if triples:
+                print(f"   • chunk {i}: {len(triples)} triples")
+                self.upsert(triples)
