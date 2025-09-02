@@ -17,7 +17,19 @@
     "metric_value",
     "event",
     "concept",
-    "brand_characteristic"
+    "feature",
+    "brand_characteristic",
+    "person",
+    "company",
+    "expansion",
+    "content",
+    "gameplay_feature",
+    "metric",
+    "region",
+    "audience_type",
+    "policy",
+    "ministry",
+    "date"
   ],
   "relation_types": [
     "belongs_to_brand",
@@ -33,6 +45,17 @@
     "compares_with",
     "has_insight",
     "documented_in",
-    "is_type_of"
+    "is_type_of",
+    "is_synonym_of",
+    "is_feature_of",
+    "headed_by",
+    "announced",
+    "drives",
+    "appeals_to",
+    "includes",
+    "performs_on",
+    "targets",
+    "has_minister",
+    "start_date"
   ]
 }

@@ -1,292 +1,215 @@
 {
-  "wiki_types": {
-    "Brand": {
-      "fields": [
-        "name",
-        "overview",
-        "key_metrics",
-        "audience_segments",
-        "installments",
-        "competitors"
-      ],
-      "sub_sections": [
-        "Brand Health",
-        "Audience Evolution",
-        "Strategic Insights"
-      ],
-      "links": [
-        "Installment",
-        "Player Segment",
-        "Research Study"
-      ]
-    },
-    "Installment": {
-      "fields": [
-        "title",
-        "release_date",
-        "platforms",
-        "studio",
-        "key_features",
-        "player_segments",
-        "nps",
-        "brand_perception"
-      ],
-      "sub_sections": [
-        "Gameplay Features",
-        "Reception",
-        "Player Behaviors",
-        "Purchase Drivers"
-      ],
-      "links": [
-        "Brand",
-        "Market",
-        "Research Study"
-      ]
-    },
-    "Research Study": {
-      "fields": [
-        "study_name",
-        "date",
-        "methodology",
-        "coverage",
-        "subtype"
-      ],
-      "sub_sections": [
-        "Key Findings",
-        "Metrics",
-        "Insights",
-        "Recommendations"
-      ],
-      "links": [
-        "Brand",
-        "Installment",
-        "Player Segment",
-        "Time Period",
-        "Study Subtype"
-      ]
-    },
-    "Study Subtypes": {
-      "Brand Awareness": {
+    "wiki_types": {
+      "Research Study": {
         "fields": [
-          "awareness_levels",
-          "comparisons",
-          "changes_over_time"
+          "study_name",
+          "date",
+          "methodology",
+          "coverage",
+          "subtype"
         ],
         "sub_sections": [
-          "Awareness by Market",
-          "Awareness by Segment",
-          "Competitor Awareness"
-        ]
-      },
-      "Brand Diagnosis": {
-        "fields": [
-          "strengths",
-          "weaknesses",
-          "drivers"
-        ],
-        "sub_sections": [
-          "Brand Image",
-          "Associations",
-          "Purchase Intent"
-        ]
-      },
-      "Lore Diagnosis": {
-        "fields": [
-          "themes_tested",
-          "reception"
-        ],
-        "sub_sections": [
-          "Strengths",
-          "Weaknesses",
-          "Player Expectations"
-        ]
-      },
-      "CUBE Profiles": {
-        "fields": [
-          "segments",
-          "share",
-          "demographics"
-        ],
-        "sub_sections": [
-          "Behavior",
-          "Motivations",
-          "Signature Games"
-        ]
-      },
-      "Market Situation": {
-        "fields": [
-          "country",
-          "player_base",
-          "awareness",
-          "engagement"
-        ],
-        "sub_sections": [
-          "Comparative Situation",
-          "Opportunities",
-          "Risks"
-        ]
-      },
-      "Synthesis": {
-        "fields": [
-          "summary",
-          "cross_study_insights"
-        ],
-        "sub_sections": [
-          "Trends",
+          "Key Findings",
+          "Metrics",
+          "Insights",
           "Recommendations"
+        ],
+        "links": [
+          "Brand",
+          "Installment",
+          "Company",
+          "Market",
+          "Platform",
+          "Person",
+          "Time Period"
         ]
       },
-      "Line-up Analysis": {
+      "Brand": {
         "fields": [
-          "franchise_positioning",
-          "installment_focus"
+          "name",
+          "owner",
+          "first_release",
+          "tagline"
         ],
         "sub_sections": [
-          "Strengths vs Weaknesses",
-          "Overlap with Competitors"
+          "Overview",
+          "Installments",
+          "Audience",
+          "Notable Moments"
+        ],
+        "links": [
+          "Installment",
+          "Company",
+          "Market"
+        ]
+      },
+      "Installment": {
+        "fields": [
+          "name",
+          "release_date",
+          "platforms",
+          "developer",
+          "genre"
+        ],
+        "sub_sections": [
+          "Overview",
+          "Story",
+          "Gameplay",
+          "Reception"
+        ],
+        "links": [
+          "Brand",
+          "Company",
+          "Platform"
+        ]
+      },
+      "Company": {
+        "fields": [
+          "name",
+          "founded",
+          "hq",
+          "ceo",
+          "description"
+        ],
+        "sub_sections": [
+          "Studios",
+          "Brands",
+          "Strategy",
+          "Financials",
+          "Leadership"
+        ],
+        "links": [
+          "Studio",
+          "Brand",
+          "Person",
+          "Market"
+        ]
+      },
+      "Studio": {
+        "fields": [
+          "name",
+          "parent_company",
+          "hq",
+          "notable_titles"
+        ],
+        "sub_sections": [
+          "Teams",
+          "Projects",
+          "Culture"
+        ],
+        "links": [
+          "Company",
+          "Brand"
+        ]
+      },
+      "Person": {
+        "fields": [
+          "name",
+          "role",
+          "affiliation",
+          "bio"
+        ],
+        "sub_sections": [
+          "Career",
+          "Notable Work",
+          "Quotes"
+        ],
+        "links": [
+          "Company",
+          "Studio",
+          "Brand",
+          "Installment"
+        ]
+      },
+      "Platform": {
+        "fields": [
+          "name",
+          "maker",
+          "generation",
+          "release_date"
+        ],
+        "sub_sections": [
+          "Hardware",
+          "Services",
+          "Installed Base"
+        ],
+        "links": [
+          "Installment",
+          "Company",
+          "Market"
+        ]
+      },
+      "Market": {
+        "fields": [
+          "name",
+          "region_code"
+        ],
+        "sub_sections": [
+          "Size",
+          "Trends",
+          "Competitors"
+        ],
+        "links": [
+          "Brand",
+          "Installment",
+          "Company",
+          "Platform"
+        ]
+      },
+      "Post Mortem": {
+        "fields": [
+          "game_name",
+          "release_date",
+          "analysis_period",
+          "analyst",
+          "scope"
+        ],
+        "sub_sections": [
+          "Executive Summary",
+          "Performance Metrics",
+          "Sales Analysis",
+          "Player Engagement",
+          "Critical Reception",
+          "Technical Performance",
+          "Marketing Effectiveness",
+          "Competitive Analysis",
+          "Key Learnings",
+          "Recommendations"
+        ],
+        "links": [
+          "Brand",
+          "Installment",
+          "Company",
+          "Studio",
+          "Platform",
+          "Market",
+          "Person"
+        ]
+      },
+      "Other": {
+        "fields": [
+          "document_name",
+          "date",
+          "author",
+          "category",
+          "description"
+        ],
+        "sub_sections": [
+          "Overview",
+          "Key Points",
+          "Summary",
+          "Notes"
+        ],
+        "links": [
+          "Brand",
+          "Installment",
+          "Company",
+          "Studio",
+          "Platform",
+          "Market",
+          "Person"
         ]
       }
-    },
-    "Player Segment": {
-      "fields": [
-        "segment_name",
-        "share_of_audience",
-        "age",
-        "gender"
-      ],
-      "sub_sections": [
-        "Behavior",
-        "Motivations",
-        "Satisfaction",
-        "Signature Games"
-      ],
-      "links": [
-        "Installment",
-        "Brand",
-        "Research Study"
-      ]
-    },
-    "Lore": {
-      "fields": [
-        "theme",
-        "storyline_focus",
-        "reception"
-      ],
-      "sub_sections": [
-        "Strengths",
-        "Weaknesses",
-        "Expected Features"
-      ],
-      "links": [
-        "Installment",
-        "Brand"
-      ]
-    },
-    "Market": {
-      "fields": [
-        "region",
-        "player_base_size",
-        "brand_awareness",
-        "behavior_differences"
-      ],
-      "sub_sections": [
-        "Comparative Insights"
-      ],
-      "links": [
-        "Installment",
-        "Player Segment",
-        "Research Study"
-      ]
-    },
-    "Company": {
-      "fields": [
-        "name",
-        "founded",
-        "hq",
-        "ceo",
-        "web",
-        "description"
-      ],
-      "sub_sections": [
-        "Studios",
-        "Games/Brands",
-        "Strategy",
-        "Financials",
-        "Leadership"
-      ],
-      "links": []
-    },
-    "Studio": {
-      "fields": [
-        "name",
-        "parent_company",
-        "hq",
-        "notable_titles",
-        "leads"
-      ],
-      "sub_sections": [
-        "Teams",
-        "Projects",
-        "Culture",
-        "Hiring"
-      ],
-      "links": []
-    },
-    "Person": {
-      "fields": [
-        "name",
-        "role",
-        "affiliation",
-        "bio"
-      ],
-      "sub_sections": [
-        "Career",
-        "Notable Work",
-        "Press Quotes"
-      ],
-      "links": []
-    },
-    "Platform": {
-      "fields": [
-        "name",
-        "maker",
-        "generation",
-        "release_date"
-      ],
-      "sub_sections": [
-        "Hardware",
-        "Services",
-        "Installed Base"
-      ],
-      "links": []
-    },
-    "Custom Study: AC   Brand Awareness & Love 2024 reformat": {
-      "fields": [
-        "title",
-        "date",
-        "methodology",
-        "coverage"
-      ],
-      "sub_sections": [
-        "Key Findings",
-        "Insights",
-        "Recommendations"
-      ],
-      "links": []
-    },
-    "Custom Study: AC   Brand Diagnosis 2 pager 2019 reformat": {
-      "fields": [
-        "title",
-        "date",
-        "methodology",
-        "coverage"
-      ],
-      "sub_sections": [
-        "Key Findings",
-        "Insights",
-        "Recommendations"
-      ],
-      "links": []
     }
   }
-}
+  

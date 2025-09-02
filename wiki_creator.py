@@ -28,6 +28,12 @@ SCHEMA_SUGGESTIONS_PATH = "schema_update_suggestions.json"
 DEFAULT_CLASSIFY_TOPK = 3
 CONFIDENCE_THRESHOLD = 0.60  # matches below this are ignored
 
+# ===== gating & candidates config =====
+CANDIDATES_PATH = "wiki_candidates.json"
+MIN_FACTS_FOR_WIKI = int(os.getenv("MIN_FACTS_FOR_WIKI", "2"))
+REQUIRE_UBISOFT_PERTINENCE = True
+CREATE_EMPTY_STUBS = False  # set True if you want empty stubs for non-merit items
+
 
 def _safe_slug(s: str) -> str:
     s = s.strip()
@@ -49,6 +55,134 @@ class WikiCreator:
         self.llm = LiteLLMChat()
         self.schema = self._load_schema()
         self.suggestions = self._load_suggestions()
+
+    def _load_candidates(self) -> Dict:
+        if os.path.exists(CANDIDATES_PATH):
+            with open(CANDIDATES_PATH, "r", encoding="utf-8") as f:
+                return json.load(f)
+        return {"candidates": []}
+
+    def _save_candidates(self, data: Dict):
+        with open(CANDIDATES_PATH, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+
+    def record_wiki_candidate(self, entry: Dict):
+        """
+        entry keys: entity_name, wiki_type, subtype, file, facts_count, ubisoft_linked, merit, reason
+        Dedup by (entity_name, wiki_type, file).
+        """
+        data = self._load_candidates()
+        key = (entry.get("entity_name"), entry.get("wiki_type"), entry.get("file"))
+        seen = {(c.get("entity_name"), c.get("wiki_type"), c.get("file")) for c in data["candidates"]}
+        if key not in seen:
+            data["candidates"].append(entry)
+            self._save_candidates(data)
+
+    def extract_entity_facts(self, entity_name: str, doc_text: str) -> Dict:
+        """
+        Ask LLM to pull only explicit facts about `entity_name` from doc_text.
+        Returns dict: { "facts": [str...], "mentions": int }
+        """
+        prompt = f"""
+You will extract explicit facts about a target entity from the given text.
+Target entity: "{entity_name}"
+
+Rules:
+- Extract only facts explicitly stated in the text (no world knowledge, no inferences).
+- Return short atomic bullets. If none exist, return an empty list.
+- Also count approximate mentions of the entity name (0..N).
+- Answer ONLY JSON: {{ "facts": [..], "mentions": <int> }}
+
+Text:
+\"\"\"{doc_text[:4000]}\"\"\""""
+        raw = self.llm.invoke(prompt)
+        try:
+            # Clean up the response - remove markdown code blocks if present
+            cleaned = raw.strip()
+            if cleaned.startswith('```json'):
+                cleaned = cleaned[7:]
+            if cleaned.endswith('```'):
+                cleaned = cleaned[:-3]
+            cleaned = cleaned.strip()
+            
+            data = json.loads(cleaned)
+            facts = data.get("facts", [])
+            mentions = int(data.get("mentions", 0))
+        except Exception as e:
+            print(f"    ⚠️ JSON parsing failed for {entity_name}: {e}")
+            print(f"    Raw response: {raw[:200]}...")
+            facts, mentions = [], 0
+        return {"facts": facts, "mentions": mentions}
+
+    def judge_ubisoft_pertinence(self, entity_name: str, etype: str, doc_text: str) -> Dict:
+        """
+        Decide if the document ties the entity to Ubisoft context:
+        - Ubisoft as company/studio/publisher
+        - Ubisoft brands (e.g., Assassin's Creed) or Ubisoft projects
+        Return: { "ubisoft_linked": bool, "why": str }
+        """
+        prompt = f"""
+Decide if the following text connects the entity to Ubisoft's ecosystem.
+
+Entity: "{entity_name}" (type: {etype})
+Question: Is there an explicit connection in the text to Ubisoft (company/studios/publishing)
+or to a Ubisoft brand/franchise (e.g., Assassin's Creed), or to Ubisoft projects?
+
+Return ONLY JSON: {{ "ubisoft_linked": true|false, "why": "<short reason or empty>" }}
+
+Text:
+\"\"\"{doc_text[:3000]}\"\"\""""
+        raw = self.llm.invoke(prompt)
+        try:
+            # Clean up the response - remove markdown code blocks if present
+            cleaned = raw.strip()
+            if cleaned.startswith('```json'):
+                cleaned = cleaned[7:]
+            if cleaned.endswith('```'):
+                cleaned = cleaned[:-3]
+            cleaned = cleaned.strip()
+            
+            data = json.loads(cleaned)
+            return {
+                "ubisoft_linked": bool(data.get("ubisoft_linked", False)),
+                "why": str(data.get("why", "")).strip()
+            }
+        except Exception as e:
+            print(f"    ⚠️ JSON parsing failed for ubisoft pertinence: {e}")
+            print(f"    Raw response: {raw[:200]}...")
+            return {"ubisoft_linked": False, "why": ""}
+
+    def assess_entity_worthiness(self, entity: dict, doc_text: str, source_file: str) -> Dict:
+        """
+        Consolidate facts + pertinence to judge if this entity merits a wiki now.
+        """
+        name = entity["name"]
+        etype = entity.get("type", "brand")
+        facts_info = self.extract_entity_facts(name, doc_text)
+        pertinence = self.judge_ubisoft_pertinence(name, etype, doc_text)
+
+        facts_count = len(facts_info["facts"])
+        ubisoft_linked = pertinence["ubisoft_linked"]
+        merit = (facts_count >= MIN_FACTS_FOR_WIKI) and (ubisoft_linked or not REQUIRE_UBISOFT_PERTINENCE)
+        
+
+
+        reason = []
+        reason.append(f"{facts_count} explicit fact(s)")
+        reason.append("linked to Ubisoft" if ubisoft_linked else "no Ubisoft linkage")
+        decision = {
+            "entity_name": name,
+            "wiki_type": self._map_entity_to_wiki_type(etype),
+            "subtype": None,
+            "file": source_file,
+            "facts_count": facts_count,
+            "ubisoft_linked": ubisoft_linked,
+            "merit": merit,
+            "reason": "; ".join(reason)
+        }
+        # always record to candidates list for transparency
+        self.record_wiki_candidate(decision)
+        return decision
 
     # ---------- schema & suggestions ----------
     def _load_schema(self) -> Dict:
@@ -109,56 +243,67 @@ Document (truncated):
         return proposal
 
 
-    # ---------- classification ----------
+
     def classify_document(self, doc_text: str, top_k: int = DEFAULT_CLASSIFY_TOPK) -> Dict:
         """
         Returns:
-          {
+        {
             "matches": [{"wiki_type": "...", "subtype": "..."|null, "confidence": 0.83}, ...],
-            "new_type": {"name": "New Type", "fields": [...], "sub_sections": [...] } | null
-          }
+            "new_type": null
+        }
         """
-        types = list(self.schema.keys())
 
-        # If the schema includes Study Subtypes in a nested dict, surface them for guidance:
-        subtypes = []
-        if "Study Subtypes" in self.schema and isinstance(self.schema["Study Subtypes"], dict):
-            subtypes = list(self.schema["Study Subtypes"].keys())
+        # Give model the full schema detail, not just type names
+        types = list(self.schema.keys())
+        schema_detail = {t: self.schema[t] for t in types}
 
         prompt = f"""
-You classify documents into wiki types and optionally subtypes.
+    You are a document classifier for a knowledge wiki.
 
-Existing wiki types:
-{types}
+    ## Existing wiki types (and structures):
+    {json.dumps(schema_detail, indent=2)}
 
-Existing study subtypes (if applicable):
-{subtypes}
+    ## Rules
+    - You MUST assign the document to one of the existing wiki types above. 
+    - Never invent or propose new types like "Custom Study".
+    - If the document is some kind of research/analysis/diagnosis/report/etc., map it to "Research Study".
+    - In that case, set "subtype" to a short descriptive string, e.g. "Brand Awareness", "Diagnosis", "Lore".
+    - For all other docs, map to the closest generic type: Brand, Installment, Company, Studio, Person, Platform, Market.
+    - Always return up to {top_k} best matches, with a confidence 0.0 - 1.0.
+    - Do NOT include "new_type" unless no schema types exist (which is never the case here).
+    - Answer ONLY JSON with keys: matches (list), new_type (must be null).
 
-Rules:
-- Return up to {top_k} best matches with confidence 0.0 - 1.0.
-- If none fit well, propose NEW_WIKI_TYPE with a minimal structure (fields, sub_sections).
-- If a match is a Study subtype, set wiki_type="Research Study" and include "subtype".
-- Answer ONLY JSON with keys: matches (list), new_type (object or null).
+    ## Document (truncated):
+    \"\"\"{doc_text[:4000]}\"\"\"
+    """
 
-Document (truncated):
-\"\"\"{doc_text[:4000]}\"\"\"
-"""
         raw = self.llm.invoke(prompt)
         try:
-            data = json.loads(raw)
-        except Exception:
-            # very defensive fallback
+            # Clean up the response - remove markdown code blocks if present
+            cleaned = raw.strip()
+            if cleaned.startswith('```json'):
+                cleaned = cleaned[7:]
+            if cleaned.endswith('```'):
+                cleaned = cleaned[:-3]
+            cleaned = cleaned.strip()
+            
+            data = json.loads(cleaned)
+        except Exception as e:
+            print(f"    ⚠️ JSON parsing failed for classify_document: {e}")
+            print(f"    Raw response: {raw[:200]}...")
             data = {"matches": [], "new_type": None}
-        # sanitize
+
         matches = data.get("matches", [])
         for m in matches:
             m.setdefault("subtype", None)
+            # Fix: LLM sometimes returns "type" instead of "wiki_type"
+            if "type" in m and "wiki_type" not in m:
+                m["wiki_type"] = m.pop("type")
             try:
                 m["confidence"] = float(m.get("confidence", 0))
             except Exception:
                 m["confidence"] = 0.0
-        new_type = data.get("new_type", None)
-        return {"matches": matches, "new_type": new_type}
+        return {"matches": matches, "new_type": None}
 
     def record_schema_suggestion(self, new_type: Dict, file_name: str):
         """
@@ -223,76 +368,46 @@ Document (truncated):
         lines.append("---\n")
         return "\n".join(lines)
 
-    def _build_generation_prompt(self, wiki_type: str, subtype: Optional[str], schema: Dict, entity_name: str, source_file: str, doc_text: str) -> str:
+
+
+    def _build_generation_prompt(
+        self, wiki_type: str, subtype: Optional[str],
+        schema: Dict, entity_name: str,
+        source_file: str, doc_text: str
+    ) -> str:
         fields = schema.get("fields", [])
         subs   = schema.get("sub_sections", [])
         return f"""
-You create Markdown wiki pages using the provided structure.
+# ROLE: Encyclopedic Wiki Author
 
-Wiki type: {wiki_type}
-Subtype: {subtype or "None"}
-Entity name (title): {entity_name}
+You are writing an INDEPENDENT encyclopedic entry. The page must read like a standalone wiki article,
+NOT a summary of a document.
 
-Fields (fill concisely, make "TBD" or "Not specified in source document" if the document lacks data):
-{fields}
+TARGET
+- Entity: {entity_name}
+- Wiki type: {wiki_type}
+- Subtype: {subtype or "None"}
 
-IMPORTANT: For Company entities, these fields are commonly empty and should be "TBD":
-- founded: Usually not mentioned in research documents
-- hq: Usually not mentioned in research documents  
-- ceo: Usually not mentioned in research documents
-- web: Usually not mentioned in research documents
+STRICT RULES
+- Use ONLY facts explicitly present in the provided text below.
+- If a field or subsection has no explicit support in the text, LEAVE IT BLANK (do not write "Not specified").
+- It is acceptable for the page to be very short if the text contains little information.
+- After each factual statement, add a citation marker like [^{source_file}].
+- End with a "## References" section that lists the source and embeds it with <object>/<iframe>.
+- Do not use world knowledge. No inferences. No guessing.
 
-CRITICAL COMPANY FIELD RULES:
-- **founded**: MUST be "TBD" unless the document explicitly states a founding date
-- **hq**: MUST be "TBD" unless the document explicitly states a headquarters location  
-- **ceo**: MUST be "TBD" unless the document explicitly states a CEO name
-- **web**: MUST be "TBD" unless the document explicitly states a website URL
-- **Studios section**: MUST be "Not specified in source document" unless specific studios are mentioned
+STRUCTURE
+- H1: "# {wiki_type}: {entity_name}"
+- Fields (as bold labels):
+  {json.dumps(fields, ensure_ascii=False)}
+- Sub-sections:
+  {json.dumps(subs, ensure_ascii=False)}
 
-REMEMBER: These fields are commonly empty in research documents and should default to "TBD" or "Not specified in source document" unless explicitly found in the text above.
+OUTPUT
+- Valid Markdown only.
 
-Sub-sections (write clear bullet points when possible):
-{subs}
-
-Source file: {source_file}
-
-Document (truncated):
+SOURCE TEXT (use only this):
 \"\"\"{doc_text[:6000]}\"\"\"
-
-CRITICAL RULES - READ CAREFULLY:
-- Output valid Markdown.
-- Top H1 must be "# {wiki_type}: {entity_name}".
-- For fields, use bold labels like **Field_Name**: value
-- For sub-sections, use "## {{Subsection}}" and content below.
-
-STRICT FACTUAL REQUIREMENTS - ZERO TOLERANCE FOR HALLUCINATION:
-- ONLY use information that is EXPLICITLY stated in the provided document text above.
-- DO NOT add any information from your general knowledge, even if you think it's common knowledge.
-- DO NOT infer or assume facts not directly stated in the document.
-- If a field cannot be filled with information from the document, use "TBD" or "Not specified in source document".
-- For company information (founded date, HQ, CEO, website, studio locations), ONLY include what is explicitly mentioned in the document.
-- If you're unsure whether information comes from the document, DO NOT include it.
-
-CRITICAL: The following fields MUST be "TBD" or "Not specified in source document" unless explicitly found in the document:
-- founded date
-- headquarters (hq)
-- CEO name
-- website URL
-- studio locations
-- any financial information
-- any leadership details beyond what's explicitly stated
-
-EXAMPLES OF WHAT NOT TO DO:
-- DO NOT add founding dates, CEO names, or headquarters unless explicitly stated
-- DO NOT add studio locations unless specifically mentioned
-- DO NOT add generic company descriptions not found in the document
-- DO NOT add industry rankings or leadership claims not stated
-
-EXAMPLES OF WHAT TO DO:
-- Use exact statistics, percentages, and numbers from the document
-- Quote specific phrases and terminology from the document
-- Reference specific studies, methodologies, and findings mentioned
-- Include only the brands, franchises, and details explicitly listed
 """
 
     def _generate_markdown(self, wiki_type: str, subtype: Optional[str], entity_name: str, source_file: str, doc_text: str) -> str:
@@ -315,9 +430,12 @@ EXAMPLES OF WHAT TO DO:
         slug = f"{_safe_slug(wiki_type)}_{_safe_slug(entity_name)}.md"
         return os.path.join(WIKI_FOLDER, slug)
 
-    def create_or_update_wikis_from_matches(self, matches: List[Dict], entity_name: str, source_file: str, doc_text: str) -> List[str]:
+    def create_or_update_wikis_from_matches(
+        self, matches: List[Dict], entity_name: str, source_file: str, doc_text: str, file_hash: str
+    ) -> List[str]:
         """
         For each matched wiki type above threshold, create/update the wiki.
+        Also ensures (:WikiPage)-[:CITES]->(:Document).
         Returns list of written paths.
         """
         written = []
@@ -329,22 +447,26 @@ EXAMPLES OF WHAT TO DO:
             md = self._generate_markdown(wiki_type, subtype, entity_name, source_file, doc_text)
             path = self._wiki_path(wiki_type, entity_name)
 
-            if os.path.exists(path):
-                # merge source_files if needed; otherwise overwrite content to keep deterministic structure
-                try:
-                    with open(path, "r", encoding="utf-8") as f:
-                        existing = f.read()
-                    # naive merge of source_files in front matter (best effort)
-                    if "source_files:" in existing:
-                        if source_file not in existing:
-                            existing = existing.replace("source_files:", f"source_files: [{json.dumps(source_file)}]")
-                except Exception:
-                    pass
-
             with open(path, "w", encoding="utf-8") as f:
                 f.write(md)
             written.append(path)
             print(f"✅ Wiki written: {path}")
+
+            # Link wiki -> Document
+            driver = GraphDatabase.driver(
+                os.getenv("NEO4J_URI"),
+                auth=(os.getenv("NEO4J_USERNAME"), os.getenv("NEO4J_PASSWORD"))
+            )
+            with driver.session() as session:
+                session.run(
+                    """
+                    MATCH (d:Document {source_id:$source_id})
+                    MERGE (w:WikiPage {path:$wiki_path})
+                    MERGE (w)-[:CITES]->(d)
+                    """,
+                    source_id=file_hash,
+                    wiki_path=path
+                )
         return written
 
     def wiki_exists(self, wiki_type: str, entity_name: str) -> bool:
@@ -412,11 +534,13 @@ EXAMPLES OF WHAT TO DO:
             "market": "Market"
         }.get(etype, "Brand")
 
-    def upsert_entity_wiki(self, entity: dict, doc_text: str, source_file: str) -> str:
+
+    def upsert_entity_wiki(self, entity: dict, doc_text: str, source_file: str, file_hash: str) -> str:
         """
         entity = {"name": "...", "type": "brand|company|studio|..."}
         - If wiki exists -> merge new facts (LLM guided).
         - Else -> create stub via LLM from schema.
+        - Always link wiki -> Document in Neo4j using CITES edge.
         Returns path to the wiki.
         """
         self.ensure_entity_schema_basics()
@@ -443,51 +567,217 @@ EXAMPLES OF WHAT TO DO:
             with open(path, "r", encoding="utf-8") as f:
                 existing = f.read()
             prompt = f"""
-You are updating an existing wiki page.
+    # ROLE: Wiki Content Merger
 
-Current page (Markdown with YAML front matter):
----
-(omitted on purpose)
----
-{existing}
+    You are a meticulous research assistant tasked with updating an existing wiki page with new information from a source document. Your job is to merge ONLY factual information while preserving existing content.
 
-New source file: {source_file}
+    ## TASK: Update existing wiki page
 
-Document excerpt:
-\"\"\"{doc_text[:6000]}\"\"\"
+    **Target Entity**: {name}
+    **Wiki Type**: {wiki_type}
+    **New Source Document**: {source_file}
 
-CRITICAL TASK REQUIREMENTS:
-- Keep existing structure and content.
-- ONLY add/modify where the new document provides **new factual info** that is EXPLICITLY stated.
-- Fill missing fields ONLY with information explicitly found in the new document.
-- Append brief new bullets to matching sub-sections; don't duplicate.
-- Add a **References** section at the end if not present, with a bullet for the new source file.
+    ## CHAIN OF THOUGHT PROCESS:
 
-STRICT FACTUAL REQUIREMENTS:
-- DO NOT add any information from your general knowledge, even if it seems relevant.
-- DO NOT infer or assume facts not directly stated in the new document.
-- ONLY use information that is EXPLICITLY mentioned in the provided document excerpt above.
-- If you're unsure whether information comes from the document, DO NOT include it.
+    ### Step 1: Analyze Existing Content
+    Review the current wiki page below to understand:
+    - What information is already present
+    - What fields are filled vs. empty
+    - What sub-sections exist and their content
 
-- Output the full updated Markdown.
-"""
+    ### Step 2: Analyze New Document
+    Carefully read the new document excerpt to identify:
+    - What NEW factual information is explicitly stated about {name}
+    - What statistics, facts, or details are mentioned that aren't already in the wiki
+    - What is NOT mentioned (important for avoiding hallucination)
+
+    ### Step 3: Merge Strategy
+    Determine what to add/modify:
+    - Fill empty fields ONLY with information explicitly found in the new document
+    - Add new bullet points to existing sub-sections ONLY if the new document provides additional facts
+    - Do NOT duplicate existing information
+    - Do NOT modify existing information unless the new document provides corrections
+
+    ## EXISTING WIKI PAGE:
+    {existing}
+
+    ## NEW SOURCE DOCUMENT:
+    \"\"\"{doc_text[:6000]}\"\"\"
+
+    ## STRICT MERGE RULES:
+
+    ### ZERO TOLERANCE FOR HALLUCINATION:
+    - **ONLY** add information explicitly stated in the new document
+    - **NEVER** add information from your general knowledge
+    - **NEVER** infer or assume facts not directly stated
+    - **PRESERVE** all existing content unless explicitly contradicted by the new document
+
+    ### SOURCE VERIFICATION:
+    For every new piece of information you add, you must be able to point to the exact location in the new document where it appears.
+
+    ### MERGE REQUIREMENTS:
+    - Keep existing structure and content intact
+    - ONLY add/modify where the new document provides **new factual info** that is EXPLICITLY stated
+    - Fill missing fields ONLY with information explicitly found in the new document
+    - Append brief new bullets to matching sub-sections; don't duplicate
+    - Add a **References** section at the end if not present, with a bullet for the new source file
+
+    ## OUTPUT FORMAT:
+    - Full updated Markdown with YAML front matter
+    - Preserve existing structure
+    - Add new information only where explicitly found in the new document
+
+    ## FINAL CHECK:
+    Before submitting, verify that every new piece of information can be traced back to the new source document above. If you cannot point to the exact location of a fact, do not include it.
+    """
             updated = self.llm.invoke(prompt).strip()
             with open(path, "w", encoding="utf-8") as f:
                 f.write(updated + "\n")
             print(f"🧩 Updated entity wiki: {path}")
-            return path
+        else:
+            # CREATE: generate from schema + doc
+            gen_prompt = self._build_generation_prompt(
+                wiki_type=wiki_type, subtype=None, schema=schema,
+                entity_name=name, source_file=source_file, doc_text=doc_text
+            )
+            md = self.llm.invoke(gen_prompt)
+            front = self._yaml_front_matter({
+                "wiki_type": wiki_type,
+                "title": name,
+                "approved": "ok",  # entity pages are allowed immediately
+                "source_files": [source_file],
+                "schema_version": 1
+            })
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(front + md.strip() + "\n")
+            print(f"🌱 Created entity wiki: {path}")
 
-        # CREATE: generate from schema + doc
-        gen_prompt = self._build_generation_prompt(
-            wiki_type=wiki_type, subtype=None, schema=schema,
-            entity_name=name, source_file=source_file, doc_text=doc_text
-        )
-        md = self.llm.invoke(gen_prompt)
-        front = self._yaml_front_matter({
-            "wiki_type": wiki_type, "title": name, "approved": "ok",
-            "source_files": [source_file], "schema_version": 1
-        })
-        with open(path, "w", encoding="utf-8") as f:
-            f.write(front + md.strip() + "\n")
-        print(f"🌱 Created entity wiki: {path}")
+        # Always link wiki -> Document
+        with driver.session() as session:
+            session.run(
+                """
+                MATCH (d:Document {source_id:$source_id})
+                MERGE (w:WikiPage {path:$wiki_path})
+                MERGE (w)-[:CITES]->(d)
+                """,
+                source_id=file_hash,
+                wiki_path=path
+            )
+            
+            # 🔗 Create Brand-Installment cross-references
+            self._create_brand_installment_cross_references(session, wiki_type, name, path)
+
         return path
+    
+    def _create_brand_installment_cross_references(self, session, wiki_type: str, entity_name: str, wiki_path: str):
+        """
+        Create cross-references between Brand and Installment wikis.
+        This ensures bidirectional linking for Quartz navigation.
+        """
+        if wiki_type == "Brand":
+            # Find all Installments that belong to this Brand
+            result = session.run("""
+                MATCH (b:Brand {name: $brand_name})<-[:BELONGS_TO_BRAND]-(i:Installment)
+                RETURN i.name AS installment_name
+            """, brand_name=entity_name)
+            
+            installments = [record["installment_name"] for record in result]
+            if installments:
+                # Add Installments section to Brand wiki
+                self._add_installments_to_brand_wiki(entity_name, installments)
+        
+        elif wiki_type == "Installment":
+            # Find the Brand this Installment belongs to
+            result = session.run("""
+                MATCH (i:Installment {name: $installment_name})-[:BELONGS_TO_BRAND]->(b:Brand)
+                RETURN b.name AS brand_name
+            """, installment_name=entity_name)
+            
+            brand_record = result.single()
+            if brand_record:
+                brand_name = brand_record["brand_name"]
+                # Add Brand reference to Installment wiki
+                self._add_brand_to_installment_wiki(entity_name, brand_name)
+    
+    def _add_installments_to_brand_wiki(self, brand_name: str, installments: List[str]):
+        """
+        Add Installments section to Brand wiki with Quartz-compatible links.
+        """
+        brand_wiki_path = self._wiki_path("Brand", brand_name)
+        if not os.path.exists(brand_wiki_path):
+            return
+        
+        # Read existing content
+        with open(brand_wiki_path, "r", encoding="utf-8") as f:
+            content = f.read()
+        
+        # Check if Installments section already exists
+        if "## Installments" in content:
+            # Update existing section
+            installments_links = []
+            for installment in installments:
+                installment_slug = f"Installment_{_safe_slug(installment)}"
+                installments_links.append(f"- [[{installment_slug}|{installment}]]")
+            
+            # Replace existing installments list
+            import re
+            pattern = r"(## Installments\n)(.*?)(\n##|\n$)"
+            replacement = f"\\1{chr(10).join(installments_links)}\\3"
+            content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+        else:
+            # Add new Installments section before the last section
+            installments_links = []
+            for installment in installments:
+                installment_slug = f"Installment_{_safe_slug(installment)}"
+                installments_links.append(f"- [[{installment_slug}|{installment}]]")
+            
+            installments_section = f"\n## Installments\n{chr(10).join(installments_links)}\n"
+            
+            # Insert before the last section (usually References or similar)
+            lines = content.split('\n')
+            insert_index = len(lines) - 2  # Before the last line
+            lines.insert(insert_index, installments_section)
+            content = '\n'.join(lines)
+        
+        # Write updated content
+        with open(brand_wiki_path, "w", encoding="utf-8") as f:
+            f.write(content)
+        
+        print(f"🔗 Added {len(installments)} installments to {brand_name} wiki")
+    
+    def _add_brand_to_installment_wiki(self, installment_name: str, brand_name: str):
+        """
+        Add Brand reference to Installment wiki with Quartz-compatible link.
+        """
+        installment_wiki_path = self._wiki_path("Installment", installment_name)
+        if not os.path.exists(installment_wiki_path):
+            return
+        
+        # Read existing content
+        with open(installment_wiki_path, "r", encoding="utf-8") as f:
+            content = f.read()
+        
+        # Add brand field if not present
+        if "**brand:**" not in content.lower():
+            # Find the fields section and add brand
+            brand_slug = f"Brand_{_safe_slug(brand_name)}"
+            brand_link = f"**brand:** [[{brand_slug}|{brand_name}]]"
+            
+            # Insert after the first field (usually name)
+            lines = content.split('\n')
+            for i, line in enumerate(lines):
+                if line.strip().startswith("**name:**"):
+                    lines.insert(i + 1, brand_link)
+                    break
+            
+            content = '\n'.join(lines)
+        
+        # Write updated content
+        with open(installment_wiki_path, "w", encoding="utf-8") as f:
+            f.write(content)
+        
+        print(f"🔗 Added brand reference to {installment_name} wiki")
+
+
+
+

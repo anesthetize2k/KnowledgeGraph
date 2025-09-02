@@ -6,7 +6,7 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 # ensure .env is loaded
 load_dotenv()
 
-chat_model = os.getenv("LLM_MODEL_CHAT", "gpt-4o")
+chat_model = os.getenv("LLM_MODEL_CHAT", "gpt-4o-mini")
 embed_model = os.getenv("LLM_MODEL_EMBED", "text-embedding-3-small")
 
 print("🔎 Testing ChatOpenAI...")

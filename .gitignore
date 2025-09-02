@@ -13,3 +13,7 @@ processed.json
 /Wikis/*
 !/Wikis/.gitkeep
 schema_update_suggestions.json
+
+# Temporary files and scripts
+/temp/*
+!/temp/.gitkeep
