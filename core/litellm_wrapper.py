@@ -8,18 +8,23 @@ load_dotenv()
 
 class LiteLLMChat:
     def __init__(self, model=None):
-        self.base = os.getenv("LITELLM_BASE_URL", "https://litellm.foundry.ubisoft.org/openai")
-        self.model = model or os.getenv("LITELLM_MODEL", "gpt-4o")
+        base_url = os.getenv("LITELLM_BASE_URL", "https://litellm.foundry.ubisoft.org")
+        # Remove /openai suffix if it exists
+        if base_url.endswith("/openai"):
+            base_url = base_url[:-7]  # Remove "/openai"
+        self.base = base_url
+        self.model = model or os.getenv("LITELLM_MODEL", "gpt-4o-mini")
         self.key = os.getenv("LITELLM_API_KEY")
 
     def invoke(self, prompt: str) -> str:
-        url = f"{self.base}/deployments/{self.model}/chat/completions"
+        url = f"{self.base}/engines/{self.model}/chat/completions"
         headers = {
             "x-litellm-api-key": self.key,
             "accept": "application/json",
             "Content-Type": "application/json",
         }
         body = {
+            "model": self.model,
             "messages": [
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt},
@@ -46,12 +51,16 @@ class LiteLLMChat:
 
 class LiteLLMEmbeddings:
     def __init__(self, model=None):
-        self.base = os.getenv("LITELLM_BASE_URL", "https://litellm.foundry.ubisoft.org/openai")
+        base_url = os.getenv("LITELLM_BASE_URL", "https://litellm.foundry.ubisoft.org")
+        # Remove /openai suffix if it exists
+        if base_url.endswith("/openai"):
+            base_url = base_url[:-7]  # Remove "/openai"
+        self.base = base_url
         self.model = model or os.getenv("LITELLM_EMBED_MODEL", "text-embedding-3-large")
         self.key = os.getenv("LITELLM_API_KEY")
 
     def embed_query(self, text: str):
-        url = f"{self.base}/deployments/{self.model}/embeddings"
+        url = f"{self.base}/engines/{self.model}/embeddings"
         headers = {
             "x-litellm-api-key": self.key,
             "accept": "application/json",

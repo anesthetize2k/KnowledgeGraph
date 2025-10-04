@@ -115,7 +115,7 @@ for canonical_name, synonyms in GLOSSARY.get("synonyms", {}).items():
 # 🚯 Noise guards
 # =========================
 GENERIC_BAD = {
-    "these elements","brand","element","elements","topic","section","the study",
+    "these elements","element","elements","topic","section","the study",
     "this","that","it","intro","summary","n/a","none","", "-", "—", "•"
 }
 
@@ -128,7 +128,7 @@ You extract high-signal facts to build Ubisoft’s internal knowledge graph for 
 OUTPUT STRICTLY AS JSON with keys: "entities" and "relations". No prose.
 
 ENTITY SCHEMA
-  { "name": str, "type": one_of[
+  {{ "name": str, "type": one_of[
       brand, installment, studio, publisher, company, competitor,
       player_segment, audience_type, region, market,
       platform, content, gameplay_feature, feature, update, event,
@@ -137,10 +137,10 @@ ENTITY SCHEMA
       person,
       metric, metric_value
     ],
-    "aliases": [str]? }
+    "aliases": [str]? }}
 
 RELATION SCHEMA
-  {
+  {{
     "head": str, "head_type": <type>,
     "relation": one_of[
       belongs_to_brand, part_of, includes, has_feature, is_synonym_of,
@@ -153,7 +153,7 @@ RELATION SCHEMA
       mentioned_in_doc, mentioned_in_chunk
     ],
     "tail": str, "tail_type": <type>,
-    "qualifiers": {
+    "qualifiers": {{
         "value": str|number?,     // numeric value ONLY if fully scoped (see rules)
         "unit": str?,             // %, hrs, mins, etc.
         "time_period": str?,      // Q1 2025, 2024-06, 2025
@@ -162,15 +162,15 @@ RELATION SCHEMA
         "population_segment": str?, // REQUIRED for segment_share (population)
         "region": str?, "platform": str?,
         "confidence": number?     // 0..1
-    }?
-  }
+    }}?
+  }}
 
 HARD RULES (DROP IF VIOLATED)
 1) NO BARE NUMBERS: Never emit a numeric value without the metric name and scope. If you only see “11%”, do not produce a metric relation.
 2) METRICS REQUIRE CONTEXT: Only emit metric relations if:
-   - metric ∈ {dau,mau,wau,retention_d1,retention_d7,retention_d30,churn_rate,playtime,avg_session_length,sessions_per_user,
+   - metric ∈ {{dau,mau,wau,retention_d1,retention_d7,retention_d30,churn_rate,playtime,avg_session_length,sessions_per_user,
                arpdau,arppu,conversion_rate,ltv,payers_rate,nps,csat,crash_rate,bug_rate,matchmaking_time,queue_time,
-               sales,revenue,peak_ccu,avg_ccu,reviews_score,segment_share}
+               sales,revenue,peak_ccu,avg_ccu,reviews_score,segment_share}}
    - AND at least one of: time_period/date/segment/region/platform is present.
 3) SEGMENT SHARE SPECIALIZATION:
    - For metric=segment_share, qualifiers MUST include both:
@@ -186,7 +186,7 @@ EXTRACTION PRIORITY (KEEP ONLY HIGH-SIGNAL)
 - Metrics WITH qualifiers (period/segment/region/platform). Drop generic/unscoped stats.
 
 FORMAT
-- Output ONLY: {"entities":[...], "relations":[...]}. If nothing valid, return {"entities":[], "relations":[]}.
+- Output ONLY: {{"entities":[...], "relations":[...]}}. If nothing valid, return {{"entities":[], "relations":[]}}.
 - English only.
 
 Passage:
@@ -272,10 +272,35 @@ class TripletExtractor:
             auth=(os.getenv("NEO4J_USERNAME"), os.getenv("NEO4J_PASSWORD"))
         )
 
+    def close(self):
+        """Close database connection."""
+        if self.driver:
+            self.driver.close()
+
     # ---------- LLM call ----------
     def _llm_extract(self, text: str) -> Dict[str, Any]:
         out = self.llm.invoke(PROMPT.format(text=text[:4000]))
         try:
+            # Try to clean the response if it has extra data
+            if "Extra data:" in str(out):
+                # Extract JSON part before the error
+                json_start = out.find('{')
+                if json_start != -1:
+                    out = out[json_start:]
+                    # Find the end of the JSON object
+                    brace_count = 0
+                    json_end = 0
+                    for i, char in enumerate(out):
+                        if char == '{':
+                            brace_count += 1
+                        elif char == '}':
+                            brace_count -= 1
+                            if brace_count == 0:
+                                json_end = i + 1
+                                break
+                    if json_end > 0:
+                        out = out[:json_end]
+            
             parsed = json.loads(out)
             if isinstance(parsed, list):
                 return {"entities": [], "relations": [
@@ -286,6 +311,54 @@ class TripletExtractor:
                 return parsed
         except Exception as e:
             print(f"⚠️ LLM parse failure: {e}")
+            # Try multiple fallback strategies
+            try:
+                # Strategy 1: Try to extract JSON from the response
+                if "{" in str(out) and "}" in str(out):
+                    # Find the first complete JSON object
+                    start = str(out).find('{')
+                    if start != -1:
+                        # Count braces to find the end
+                        brace_count = 0
+                        end = start
+                        for i, char in enumerate(str(out)[start:], start):
+                            if char == '{':
+                                brace_count += 1
+                            elif char == '}':
+                                brace_count -= 1
+                                if brace_count == 0:
+                                    end = i + 1
+                                    break
+                        if end > start:
+                            json_str = str(out)[start:end]
+                            parsed = json.loads(json_str)
+                            if "entities" in parsed and "relations" in parsed:
+                                return parsed
+            except:
+                pass
+            
+            try:
+                # Strategy 2: Try to extract just entities and relations
+                if "entities" in str(out) and "relations" in str(out):
+                    # Find entities array
+                    entities_start = str(out).find('"entities"')
+                    if entities_start != -1:
+                        # Find the end of entities array
+                        entities_end = str(out).find(']', entities_start)
+                        if entities_end != -1:
+                            # Find relations array
+                            relations_start = str(out).find('"relations"', entities_end)
+                            if relations_start != -1:
+                                relations_end = str(out).find(']', relations_start)
+                                if relations_end != -1:
+                                    # Construct minimal JSON
+                                    json_str = '{"entities":' + str(out)[entities_start+11:entities_end+1] + ',"relations":' + str(out)[relations_start+12:relations_end+1] + '}'
+                                    parsed = json.loads(json_str)
+                                    if "entities" in parsed and "relations" in parsed:
+                                        return parsed
+            except:
+                pass
+                
         return {"entities": [], "relations": []}
 
     # ---------- Public APIs ----------
@@ -511,17 +584,20 @@ class TripletExtractor:
                 MERGE (mv)-[:ON_PLATFORM]->(p)
             """, obs_id=obs_id, name=platform)
 
-        if source_document_id:
+        # Create proper relationship hierarchy: Document -> Chunk -> Entity -> MetricValue
+        if source_document_id and chunk_id:
+            # Link the metric value to the chunk, and chunk to document
+            session.run("""
+                MATCH (mv:MetricValue {obs_id:$obs_id}), (c:Chunk {chunk_id:$cid}), (d:Document {source_id:$sid})
+                MERGE (mv)-[:MENTIONED_IN_CHUNK]->(c)
+                MERGE (c)-[:BELONGS_TO_DOCUMENT]->(d)
+            """, obs_id=obs_id, cid=chunk_id, sid=source_document_id)
+        elif source_document_id:
+            # If no chunk, link directly to document
             session.run("""
                 MATCH (mv:MetricValue {obs_id:$obs_id}), (d:Document {source_id:$sid})
                 MERGE (mv)-[:DOCUMENTED_IN]->(d)
             """, obs_id=obs_id, sid=source_document_id)
-
-        if chunk_id:
-            session.run("""
-                MATCH (mv:MetricValue {obs_id:$obs_id}), (c:Chunk {chunk_id:$cid})
-                MERGE (mv)-[:MENTIONED_IN_CHUNK]->(c)
-            """, obs_id=obs_id, cid=chunk_id)
 
     def upsert(self, payload: Dict[str, Any], source_document_id: str = None, chunk_id: str = None):
         entities = payload.get("entities") or []
@@ -594,70 +670,152 @@ class TripletExtractor:
 
                 if "time_period" in q:
                     cypher += """
-                        WITH rel
+                        WITH h, t, rel
                         MERGE (tp:TimePeriod {name:$tp})
-                        MERGE (rel)-[:DURING_PERIOD]->(tp)
+                        MERGE (h)-[:DURING_PERIOD]->(tp)
                     """
                     params["tp"] = q["time_period"]
                 if "date" in q:
                     cypher += """
-                        WITH rel
+                        WITH h, t, rel
                         MERGE (d:Date {name:$date})
-                        MERGE (rel)-[:OCCURRED_ON]->(d)
+                        MERGE (h)-[:OCCURRED_ON]->(d)
                     """
                     params["date"] = q["date"]
                 if "segment" in q:
                     cypher += """
-                        WITH rel
+                        WITH h, t, rel
                         MERGE (s:PlayerSegment {name:$seg})
-                        MERGE (rel)-[:FOR_SEGMENT]->(s)
+                        MERGE (h)-[:FOR_SEGMENT]->(s)
                     """
                     params["seg"] = q["segment"]
                 if "population_segment" in q:
                     cypher += """
-                        WITH rel
+                        WITH h, t, rel
                         MERGE (ps:PlayerSegment {name:$pseg})
-                        MERGE (rel)-[:WITHIN_POPULATION]->(ps)
+                        MERGE (h)-[:WITHIN_POPULATION]->(ps)
                     """
                     params["pseg"] = q["population_segment"]
                 if "region" in q:
                     cypher += """
-                        WITH rel
+                        WITH h, t, rel
                         MERGE (r:Region {name:$reg})
-                        MERGE (rel)-[:FOR_REGION]->(r)
+                        MERGE (h)-[:FOR_REGION]->(r)
                     """
                     params["reg"] = q["region"]
                 if "platform" in q:
                     cypher += """
-                        WITH rel
+                        WITH h, t, rel
                         MERGE (p:Platform {name:$plat})
-                        MERGE (rel)-[:ON_PLATFORM]->(p)
+                        MERGE (h)-[:ON_PLATFORM]->(p)
                     """
                     params["plat"] = q["platform"]
 
-                if source_document_id:
-                    cypher += """
-                        WITH h, t
-                        MATCH (d:Document {source_id:$source_id})
-                        MERGE (h)-[:MENTIONED_IN]->(d)
-                        MERGE (t)-[:MENTIONED_IN]->(d)
-                    """
-                    params["source_id"] = source_document_id
-                if chunk_id:
-                    cypher += """
-                        WITH h, t
-                        MATCH (c:Chunk {chunk_id:$chunk_id})
-                        MERGE (h)-[:MENTIONED_IN_CHUNK]->(c)
-                        MERGE (t)-[:MENTIONED_IN_CHUNK]->(c)
-                    """
-                    params["chunk_id"] = chunk_id
+                # Note: Primary entity linking is now handled separately in process_chunks
+                # to implement hierarchical clustering based on relationship centrality
 
                 try:
                     sess.run(cypher, **params)
                 except Exception as e:
                     print(f"⚠️ Neo4j write failed for {hcanon}-{rel}->{tcanon}: {e}")
-
+            
             self._ensure_brand_installment_connections(sess)
+    
+    def _identify_primary_entities(self, entities: List[Dict], relations: List[Dict]) -> List[str]:
+        """
+        Identify primary entities using hierarchical clustering based on relationship centrality.
+        Returns entities that should be linked to chunks (not their children).
+        """
+        if not entities:
+            return []
+        
+        # If no relations, make ALL entities primary to prevent orphans
+        if not relations:
+            print(f"    🔗 No relations found, making ALL entities primary: {[e['name'] for e in entities]}")
+            return [e["name"] for e in entities]
+        
+        # Build entity name to entity mapping
+        entity_map = {e["name"]: e for e in entities}
+        entity_names = set(entity_map.keys())
+        
+        # Build relationship graph
+        connections = {name: set() for name in entity_names}
+        for rel in relations:
+            head_name = rel["head"]
+            tail_name = rel["tail"]
+            if head_name in entity_names and tail_name in entity_names:
+                connections[head_name].add(tail_name)
+                connections[tail_name].add(head_name)
+        
+        # Hierarchical clustering: iteratively find most connected entities
+        primary_entities = []
+        remaining_entities = entity_names.copy()
+        
+        while remaining_entities:
+            # Find entity with most connections among remaining entities
+            max_connections = 0
+            candidates = []
+            
+            for entity_name in remaining_entities:
+                # Count connections to other remaining entities
+                connected_count = len(connections[entity_name] & remaining_entities)
+                if connected_count > max_connections:
+                    max_connections = connected_count
+                    candidates = [entity_name]
+                elif connected_count == max_connections and connected_count > 0:
+                    candidates.append(entity_name)
+            
+            if not candidates or max_connections == 0:
+                # No more connected entities, handle remaining entities
+                # CRITICAL: ALL remaining entities must be made primary to prevent orphans
+                print(f"    🔗 No more connected entities, making ALL remaining primary: {remaining_entities}")
+                primary_entities.extend(remaining_entities)
+                remaining_entities.clear()
+                break
+            
+            # Add all tied candidates as primary entities
+            primary_entities.extend(candidates)
+            
+            # Remove primary entities and their direct connections
+            to_remove = set(candidates)
+            for candidate in candidates:
+                to_remove.update(connections[candidate] & remaining_entities)
+            
+            remaining_entities -= to_remove
+        
+        # FINAL SAFETY CHECK: Ensure no entities are left unlinked
+        all_entity_names = {e["name"] for e in entities}
+        primary_set = set(primary_entities)
+        unlinked_entities = all_entity_names - primary_set
+        
+        if unlinked_entities:
+            print(f"    ⚠️ Found unlinked entities, adding as primary: {unlinked_entities}")
+            primary_entities.extend(unlinked_entities)
+        
+        # CRITICAL: If no primary entities were found, make ALL entities primary
+        if not primary_entities:
+            print(f"    🚨 CRITICAL: No primary entities found, making ALL entities primary: {all_entity_names}")
+            primary_entities = list(all_entity_names)
+        
+        print(f"    ✅ Final primary entities: {len(primary_entities)} out of {len(all_entity_names)} total")
+        return primary_entities
+
+    def _link_primary_entities_to_chunk(self, primary_entities: List[str], chunk_id: str, source_document_id: str = None):
+        """Link primary entities to chunks and documents."""
+        with self.driver.session() as sess:
+            for entity_name in primary_entities:
+                # Link entity to chunk
+                sess.run("""
+                    MATCH (e {name:$entity_name}), (c:Chunk {chunk_id:$chunk_id})
+                    MERGE (e)-[:MENTIONED_IN_CHUNK]->(c)
+                """, entity_name=entity_name, chunk_id=chunk_id)
+                
+                # Link chunk to document if source_document_id provided
+                if source_document_id:
+                    sess.run("""
+                        MATCH (c:Chunk {chunk_id:$chunk_id}), (d:Document {source_id:$source_id})
+                        MERGE (c)-[:BELONGS_TO_DOCUMENT]->(d)
+                    """, chunk_id=chunk_id, source_id=source_document_id)
 
     # =========================
     # 🔗 Brand-Installment hygiene
@@ -688,7 +846,7 @@ class TripletExtractor:
         if "rainbow six" in low or "r6" in low:
             return "Tom Clancy's Rainbow Six"
         return None
-
+    
     # =========================
     # 📦 Orchestration
     # =========================
@@ -697,7 +855,7 @@ class TripletExtractor:
         total_rel = 0
         total_ent = 0
         all_triples = []
-
+        
         for i, ch in enumerate(chunks):
             txt = ch.page_content
             result = self.extract_structured(txt)  # use structured to enforce policies
@@ -706,8 +864,25 @@ class TripletExtractor:
 
             if entities or relations:
                 chunk_id = ch.metadata.get("chunk_id") if hasattr(ch, 'metadata') else None
+                print(f"      🔍 DEBUG: chunk_id = {chunk_id}")
+                
+                # First, upsert all entities and relations to build the graph
                 self.upsert(result, source_document_id, chunk_id)
-                print(f"      • chunk {i+1}/{len(chunks)}: {len(entities)} entities, {len(relations)} relations")
+                
+                # Then, identify primary entities using hierarchical clustering
+                print(f"      🔍 DEBUG: Starting hierarchical clustering for {len(entities)} entities")
+                primary_entities = self._identify_primary_entities(entities, relations)
+                print(f"      🔍 DEBUG: Identified {len(primary_entities)} primary entities: {primary_entities}")
+                
+                # Link only primary entities to chunks
+                if primary_entities and chunk_id:
+                    print(f"      🔍 DEBUG: Linking {len(primary_entities)} entities to chunk {chunk_id}")
+                    self._link_primary_entities_to_chunk(primary_entities, chunk_id, source_document_id)
+                    print(f"      🔍 DEBUG: Linking completed")
+                else:
+                    print(f"      🔍 DEBUG: Skipping link - primary_entities: {len(primary_entities) if primary_entities else 0}, chunk_id: {chunk_id}")
+                
+                print(f"      • chunk {i+1}/{len(chunks)}: {len(entities)} entities, {len(relations)} relations, {len(primary_entities)} primary")
                 total_ent += len(entities); total_rel += len(relations)
                 for r in relations:
                     all_triples.append({
@@ -716,11 +891,11 @@ class TripletExtractor:
                     })
             else:
                 print(f"      • chunk {i+1}/{len(chunks)}: no high-signal facts")
-
+        
         print(f"    ✅ Total entities: {total_ent} | Total relations: {total_rel}")
         if all_triples:
             self._analyze_ontology_gaps(all_triples)
-
+    
     def _analyze_ontology_gaps(self, triples: List[Dict[str, Any]]):
         try:
             expander = OntologyExpander()
@@ -736,7 +911,7 @@ class TripletExtractor:
                 print("    ✅ No ontology gaps detected")
         except Exception as e:
             print(f"    ⚠️ Ontology gap analysis failed: {e}")
-
+    
     def store_triple(self, chunk_id: str, triple: tuple, source_document_id: str = None):
         try:
             h, ht, r, t, tt = triple

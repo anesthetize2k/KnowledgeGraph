@@ -4,10 +4,126 @@ import json
 import re
 from typing import Dict, List, Optional, Tuple
 from dotenv import load_dotenv
-from litellm_wrapper import LiteLLMChat
+from .litellm_wrapper import LiteLLMChat
 
 load_dotenv()
 from neo4j import GraphDatabase
+
+def safe_json_loads(json_str: str, fallback=None):
+    """
+    Safely parse JSON with comprehensive "Extra data" error handling and format validation.
+    """
+    if not json_str or not isinstance(json_str, str):
+        print(f"🔍 safe_json_loads: Invalid input - not string or empty")
+        return fallback
+    
+    # Clean up common issues
+    cleaned = json_str.strip()
+    original_length = len(cleaned)
+    
+    # Remove markdown code blocks if present
+    if cleaned.startswith('```json'):
+        cleaned = cleaned[7:]
+        print(f"🔍 safe_json_loads: Removed ```json prefix")
+    if cleaned.startswith('```'):
+        cleaned = cleaned[3:]
+        print(f"🔍 safe_json_loads: Removed ``` prefix")
+    if cleaned.endswith('```'):
+        cleaned = cleaned[:-3]
+        print(f"🔍 safe_json_loads: Removed ``` suffix")
+    cleaned = cleaned.strip()
+    
+    # Check for empty string after cleaning
+    if not cleaned:
+        print(f"🔍 safe_json_loads: Empty string after cleaning")
+        return fallback
+    
+    print(f"🔍 safe_json_loads: Original length: {original_length}, Cleaned length: {len(cleaned)}")
+    
+    # PROACTIVE "Extra data" check: Find the end of the first complete JSON object
+    # and extract only that part to avoid "Extra data" errors
+    try:
+        brace_count = 0
+        json_end = 0
+        for i, char in enumerate(cleaned):
+            if char == '{':
+                brace_count += 1
+            elif char == '}':
+                brace_count -= 1
+                if brace_count == 0:
+                    json_end = i + 1
+                    break
+        if json_end > 0 and json_end < len(cleaned):
+            # There's extra data after the JSON object, extract only the JSON part
+            extra_data = cleaned[json_end:]
+            cleaned = cleaned[:json_end]
+            print(f"🔍 safe_json_loads: Found extra data after JSON object (length: {len(extra_data)})")
+            print(f"🔍 safe_json_loads: Extra data preview: {extra_data[:100]}...")
+        elif json_end == 0:
+            # No complete JSON object found, this might be malformed
+            print(f"🔍 safe_json_loads: No complete JSON object found, string might be malformed")
+    except Exception as e:
+        print(f"🔍 safe_json_loads: Error in proactive check: {e}")
+    
+    try:
+        result = json.loads(cleaned)
+        print(f"🔍 safe_json_loads: Successfully parsed JSON")
+        return result
+    except json.JSONDecodeError as e:
+        error_msg = str(e)
+        print(f"🔍 safe_json_loads: JSONDecodeError: {error_msg}")
+        print(f"🔍 safe_json_loads: Cleaned string length: {len(cleaned)}")
+        print(f"🔍 safe_json_loads: Cleaned string preview: {cleaned[:200]}...")
+        
+        # Handle "Extra data" errors with more aggressive extraction
+        if "Extra data" in error_msg:
+            print(f"🔍 safe_json_loads: Extra data detected, trying aggressive extraction...")
+            try:
+                # Try to find the first complete JSON object by looking for the pattern
+                import re
+                # Look for the first complete JSON object using regex
+                json_match = re.search(r'\{.*\}', cleaned, re.DOTALL)
+                if json_match:
+                    json_part = json_match.group(0)
+                    print(f"🔍 safe_json_loads: Found JSON object via regex, length: {len(json_part)}")
+                    result = json.loads(json_part)
+                    print(f"🔍 safe_json_loads: Successfully parsed extracted JSON")
+                    return result
+            except Exception as regex_error:
+                print(f"🔍 safe_json_loads: Regex extraction failed: {regex_error}")
+        
+        # Handle "Expecting value" errors (empty or invalid JSON)
+        if "Expecting value" in error_msg:
+            print(f"🔍 safe_json_loads: Trying to find valid JSON structure...")
+            # Try to find any valid JSON structure
+            for start in range(min(len(cleaned), 100)):  # Limit search to first 100 chars
+                if cleaned[start] in '{[':
+                    try:
+                        result = json.loads(cleaned[start:])
+                        print(f"🔍 safe_json_loads: Found valid JSON at position {start}")
+                        return result
+                    except:
+                        continue
+        
+        # Handle "unterminated string" errors
+        if "unterminated string" in error_msg:
+            print(f"🔍 safe_json_loads: Trying to fix unterminated string...")
+            # Try to fix common string issues
+            try:
+                # Remove trailing commas and fix quotes
+                fixed = re.sub(r',\s*}', '}', cleaned)
+                fixed = re.sub(r',\s*]', ']', fixed)
+                result = json.loads(fixed)
+                print(f"🔍 safe_json_loads: Fixed unterminated string")
+                return result
+            except Exception as fix_error:
+                print(f"🔍 safe_json_loads: Failed to fix unterminated string: {fix_error}")
+        
+        print(f"🔍 safe_json_loads: All attempts failed, returning fallback")
+        return fallback
+    except Exception as e:
+        print(f"🔍 safe_json_loads: Unexpected error: {e}")
+        return fallback
 
 def canonical_name_from_graph(name: str, label: str, session) -> str:
     """
@@ -59,7 +175,8 @@ class WikiCreator:
     def _load_candidates(self) -> Dict:
         if os.path.exists(CANDIDATES_PATH):
             with open(CANDIDATES_PATH, "r", encoding="utf-8") as f:
-                return json.load(f)
+                content = f.read()
+                return safe_json_loads(content, {"candidates": []})
         return {"candidates": []}
 
     def _save_candidates(self, data: Dict):
@@ -83,6 +200,7 @@ class WikiCreator:
         Ask LLM to pull only explicit facts about `entity_name` from doc_text.
         Returns dict: { "facts": [str...], "mentions": int }
         """
+        print(f"🔍 extract_entity_facts: Extracting facts for {entity_name}")
         prompt = f"""
 You will extract explicit facts about a target entity from the given text.
 Target entity: "{entity_name}"
@@ -95,7 +213,9 @@ Rules:
 
 Text:
 \"\"\"{doc_text[:4000]}\"\"\""""
+        print(f"🔍 extract_entity_facts: Calling LLM for {entity_name}")
         raw = self.llm.invoke(prompt)
+        print(f"🔍 extract_entity_facts: LLM response length: {len(raw)}")
         try:
             # Clean up the response - remove markdown code blocks if present
             cleaned = raw.strip()
@@ -105,9 +225,36 @@ Text:
                 cleaned = cleaned[:-3]
             cleaned = cleaned.strip()
             
-            data = json.loads(cleaned)
+            data = safe_json_loads(cleaned, {"facts": [], "mentions": 0})
             facts = data.get("facts", [])
             mentions = int(data.get("mentions", 0))
+        except json.JSONDecodeError as e:
+            if "Extra data" in str(e):
+                # Try to extract just the JSON part before the extra data
+                try:
+                    brace_count = 0
+                    json_end = 0
+                    for i, char in enumerate(cleaned):
+                        if char == '{':
+                            brace_count += 1
+                        elif char == '}':
+                            brace_count -= 1
+                            if brace_count == 0:
+                                json_end = i + 1
+                                break
+                    if json_end > 0:
+                        json_part = cleaned[:json_end]
+                        data = safe_json_loads(json_part, {"facts": [], "mentions": 0})
+                        facts = data.get("facts", [])
+                        mentions = int(data.get("mentions", 0))
+                    else:
+                        facts, mentions = [], 0
+                except Exception:
+                    facts, mentions = [], 0
+            else:
+                print(f"    ⚠️ JSON parsing failed for {entity_name}: {e}")
+                print(f"    Raw response: {raw[:200]}...")
+                facts, mentions = [], 0
         except Exception as e:
             print(f"    ⚠️ JSON parsing failed for {entity_name}: {e}")
             print(f"    Raw response: {raw[:200]}...")
@@ -121,6 +268,7 @@ Text:
         - Ubisoft brands (e.g., Assassin's Creed) or Ubisoft projects
         Return: { "ubisoft_linked": bool, "why": str }
         """
+        print(f"🔍 judge_ubisoft_pertinence: Judging {entity_name} ({etype})")
         prompt = f"""
 Decide if the following text connects the entity to Ubisoft's ecosystem.
 
@@ -132,7 +280,9 @@ Return ONLY JSON: {{ "ubisoft_linked": true|false, "why": "<short reason or empt
 
 Text:
 \"\"\"{doc_text[:3000]}\"\"\""""
+        print(f"🔍 judge_ubisoft_pertinence: Calling LLM for {entity_name}")
         raw = self.llm.invoke(prompt)
+        print(f"🔍 judge_ubisoft_pertinence: LLM response length: {len(raw)}")
         try:
             # Clean up the response - remove markdown code blocks if present
             cleaned = raw.strip()
@@ -142,11 +292,40 @@ Text:
                 cleaned = cleaned[:-3]
             cleaned = cleaned.strip()
             
-            data = json.loads(cleaned)
+            data = safe_json_loads(cleaned, {"ubisoft_linked": False, "why": ""})
             return {
                 "ubisoft_linked": bool(data.get("ubisoft_linked", False)),
                 "why": str(data.get("why", "")).strip()
             }
+        except json.JSONDecodeError as e:
+            if "Extra data" in str(e):
+                # Try to extract just the JSON part before the extra data
+                try:
+                    brace_count = 0
+                    json_end = 0
+                    for i, char in enumerate(cleaned):
+                        if char == '{':
+                            brace_count += 1
+                        elif char == '}':
+                            brace_count -= 1
+                            if brace_count == 0:
+                                json_end = i + 1
+                                break
+                    if json_end > 0:
+                        json_part = cleaned[:json_end]
+                        data = safe_json_loads(json_part, {"ubisoft_linked": False, "why": ""})
+                        return {
+                            "ubisoft_linked": bool(data.get("ubisoft_linked", False)),
+                            "why": str(data.get("why", "")).strip()
+                        }
+                    else:
+                        return {"ubisoft_linked": False, "why": ""}
+                except Exception:
+                    return {"ubisoft_linked": False, "why": ""}
+            else:
+                print(f"    ⚠️ JSON parsing failed for ubisoft pertinence: {e}")
+                print(f"    Raw response: {raw[:200]}...")
+                return {"ubisoft_linked": False, "why": ""}
         except Exception as e:
             print(f"    ⚠️ JSON parsing failed for ubisoft pertinence: {e}")
             print(f"    Raw response: {raw[:200]}...")
@@ -189,7 +368,8 @@ Text:
         if not os.path.exists(WIKI_SCHEMA_PATH):
             raise FileNotFoundError(f"{WIKI_SCHEMA_PATH} not found. Please add it.")
         with open(WIKI_SCHEMA_PATH, "r", encoding="utf-8") as f:
-            data = json.load(f)
+            content = f.read()
+            data = safe_json_loads(content, {"wiki_types": {}})
         return data.get("wiki_types", {})
 
     def _save_schema(self):
@@ -199,7 +379,8 @@ Text:
     def _load_suggestions(self) -> Dict:
         if os.path.exists(SCHEMA_SUGGESTIONS_PATH):
             with open(SCHEMA_SUGGESTIONS_PATH, "r", encoding="utf-8") as f:
-                return json.load(f)
+                content = f.read()
+                return safe_json_loads(content, {"suggestions": []})
         return {"suggestions": []}
 
     def _save_suggestions(self):
@@ -225,7 +406,69 @@ Document (truncated):
 """
         raw = self.llm.invoke(prompt)
         try:
-            proposal = json.loads(raw)
+            proposal = safe_json_loads(raw, {
+                "wiki_type": "Research Study",
+                "subtype": "Auto-generated",
+                "description": f"Auto-generated from {file_name}",
+                "fields": ["title", "description", "methodology", "findings"],
+                "sub_sections": ["Key Insights", "Data Points", "Recommendations"]
+            })
+        except json.JSONDecodeError as e:
+            if "Extra data" in str(e):
+                # Try to extract just the JSON part before the extra data
+                try:
+                    brace_count = 0
+                    json_end = 0
+                    for i, char in enumerate(raw):
+                        if char == '{':
+                            brace_count += 1
+                        elif char == '}':
+                            brace_count -= 1
+                            if brace_count == 0:
+                                json_end = i + 1
+                                break
+                    if json_end > 0:
+                        json_part = raw[:json_end]
+                        proposal = safe_json_loads(json_part, {
+                            "wiki_type": "Research Study",
+                            "subtype": "Auto-generated",
+                            "description": f"Auto-generated from {file_name}",
+                            "fields": ["title", "description", "methodology", "findings"],
+                            "sub_sections": ["Key Insights", "Data Points", "Recommendations"]
+                        })
+                    else:
+                        # very defensive fallback
+                        from pathlib import Path
+                        guessed = Path(file_name).stem.replace("_"," ").replace("-"," ").strip()
+                        proposal = {
+                            "wiki_type": "Research Study",
+                            "subtype": guessed,
+                            "description": f"Auto-generated from {file_name}",
+                            "fields": ["title", "description", "methodology", "findings"],
+                            "sub_sections": ["Key Insights", "Data Points", "Recommendations"]
+                        }
+                except Exception:
+                    # very defensive fallback
+                    from pathlib import Path
+                    guessed = Path(file_name).stem.replace("_"," ").replace("-"," ").strip()
+                    proposal = {
+                        "wiki_type": "Research Study",
+                        "subtype": guessed,
+                        "description": f"Auto-generated from {file_name}",
+                        "fields": ["title", "description", "methodology", "findings"],
+                        "sub_sections": ["Key Insights", "Data Points", "Recommendations"]
+                    }
+            else:
+                # very defensive fallback
+                from pathlib import Path
+                guessed = Path(file_name).stem.replace("_"," ").replace("-"," ").strip()
+                proposal = {
+                    "wiki_type": "Research Study",
+                    "subtype": guessed,
+                    "description": f"Auto-generated from {file_name}",
+                    "fields": ["title", "description", "methodology", "findings"],
+                    "sub_sections": ["Key Insights", "Data Points", "Recommendations"]
+                }
         except Exception:
             # very defensive fallback
             from pathlib import Path
@@ -287,7 +530,32 @@ Document (truncated):
                 cleaned = cleaned[:-3]
             cleaned = cleaned.strip()
             
-            data = json.loads(cleaned)
+            data = safe_json_loads(cleaned, {"matches": [], "new_type": None})
+        except json.JSONDecodeError as e:
+            if "Extra data" in str(e):
+                # Try to extract just the JSON part before the extra data
+                try:
+                    brace_count = 0
+                    json_end = 0
+                    for i, char in enumerate(cleaned):
+                        if char == '{':
+                            brace_count += 1
+                        elif char == '}':
+                            brace_count -= 1
+                            if brace_count == 0:
+                                json_end = i + 1
+                                break
+                    if json_end > 0:
+                        json_part = cleaned[:json_end]
+                        data = safe_json_loads(json_part, {"matches": [], "new_type": None})
+                    else:
+                        data = {"matches": [], "new_type": None}
+                except Exception:
+                    data = {"matches": [], "new_type": None}
+            else:
+                print(f"    ⚠️ JSON parsing failed for classify_document: {e}")
+                print(f"    Raw response: {raw[:200]}...")
+                data = {"matches": [], "new_type": None}
         except Exception as e:
             print(f"    ⚠️ JSON parsing failed for classify_document: {e}")
             print(f"    Raw response: {raw[:200]}...")
@@ -358,62 +626,142 @@ Document (truncated):
 
     # ---------- wiki generation ----------
     def _yaml_front_matter(self, meta: Dict) -> str:
+        """Generate clean YAML frontmatter compatible with Quartz."""
         lines = ["---"]
-        for k, v in meta.items():
-            if isinstance(v, list):
-                lines.append(f"{k}: {json.dumps(v, ensure_ascii=False)}")
-            else:
-                vv = str(v).replace("\n", " ").strip()
-                lines.append(f"{k}: {vv}")
+        
+        # Standard Quartz fields with proper formatting
+        if "title" in meta:
+            lines.append(f'title: "{meta["title"]}"')
+        
+        if "subtitle" in meta and meta["subtitle"]:
+            lines.append(f'subtitle: "{meta["subtitle"]}"')
+        
+        # Convert wiki_type to category
+        if "wiki_type" in meta:
+            lines.append(f'categories: ["{meta["wiki_type"]}"]')
+        
+        # Convert subtype to tags if it exists
+        tags = []
+        if "subtype" in meta and meta["subtype"]:
+            tags.append(meta["subtype"])
+        if "approved" in meta:
+            tags.append(f"status:{meta['approved']}")
+        
+        if tags:
+            lines.append(f'tags: {json.dumps(tags, ensure_ascii=False)}')
+        
+        # Add description if available
+        if "description" in meta and meta["description"]:
+            lines.append(f'description: "{meta["description"]}"')
+        
+        # Add source files as a note
+        if "source_files" in meta and meta["source_files"]:
+            lines.append(f'sources: {json.dumps(meta["source_files"], ensure_ascii=False)}')
+        
+        # Add schema version as internal metadata
+        if "schema_version" in meta:
+            lines.append(f'schema_version: {meta["schema_version"]}')
+        
         lines.append("---\n")
         return "\n".join(lines)
 
 
 
-    def _build_generation_prompt(
-        self, wiki_type: str, subtype: Optional[str],
-        schema: Dict, entity_name: str,
-        source_file: str, doc_text: str
+    def _build_json_plan_prompt(
+        self, wiki_type: str, subtype: Optional[str], schema: Dict,
+        entity_name: str, source_file: str, doc_text: str
     ) -> str:
         fields = schema.get("fields", [])
         subs   = schema.get("sub_sections", [])
         return f"""
-# ROLE: Encyclopedic Wiki Author
+Emit ONLY JSON (no prose). Create a minimal content plan for a wiki page.
 
-You are writing an INDEPENDENT encyclopedic entry. The page must read like a standalone wiki article,
-NOT a summary of a document.
+WIKI_TYPE: {wiki_type}
+ENTITY: {entity_name}
+ALLOWED_FIELDS: {json.dumps(fields, ensure_ascii=False)}
+ALLOWED_SECTIONS: {json.dumps(subs, ensure_ascii=False)}
 
-TARGET
-- Entity: {entity_name}
-- Wiki type: {wiki_type}
-- Subtype: {subtype or "None"}
+RULES:
+- Use ONLY facts that appear in the SOURCE TEXT.
+- Omit any field/section you cannot support. No placeholders (e.g., "unknown").
+- Prefer 1–2 concise sentences per field or bullet points per section.
+- Each item must cite the source as: "citations": [{{"doc":"{source_file}","chunk_id":"0"}}] (use dummy chunk '0' here).
 
-STRICT RULES
-- Use ONLY facts explicitly present in the provided text below.
-- If a field or subsection has no explicit support in the text, LEAVE IT BLANK (do not write "Not specified").
-- It is acceptable for the page to be very short if the text contains little information.
-- After each factual statement, add a citation marker like [^{source_file}].
-- End with a "## References" section that lists the source and embeds it with <object>/<iframe>.
-- Do not use world knowledge. No inferences. No guessing.
+OUTPUT SCHEMA:
+{{
+  "fields": {{ "<field>": {{"text":"…","citations":[{{"doc":"…","chunk_id":"…"}}]}} }},
+  "sections": {{ "<section>": [{{"bullet":"…","citations":[{{"doc":"…","chunk_id":"…"}}]}}] }}
+}}
 
-STRUCTURE
-- H1: "# {wiki_type}: {entity_name}"
-- Fields (as bold labels):
-  {json.dumps(fields, ensure_ascii=False)}
-- Sub-sections:
-  {json.dumps(subs, ensure_ascii=False)}
-
-OUTPUT
-- Valid Markdown only.
-
-SOURCE TEXT (use only this):
+SOURCE TEXT:
 \"\"\"{doc_text[:6000]}\"\"\"
 """
 
     def _generate_markdown(self, wiki_type: str, subtype: Optional[str], entity_name: str, source_file: str, doc_text: str) -> str:
+        # JSON-first → then render ourselves to ensure no empty placeholders
+        print(f"🔍 _generate_markdown: Starting for {entity_name} ({wiki_type})")
         schema = self.schema.get(wiki_type, {"fields": [], "sub_sections": []})
-        prompt = self._build_generation_prompt(wiki_type, subtype, schema, entity_name, source_file, doc_text)
-        body_md = self.llm.invoke(prompt)
+        plan_prompt = self._build_json_plan_prompt(wiki_type, subtype, schema, entity_name, source_file, doc_text)
+        print(f"🔍 _generate_markdown: Calling LLM for {entity_name}")
+        raw = self.llm.invoke(plan_prompt)
+        print(f"🔍 _generate_markdown: LLM response length: {len(raw)}")
+        print(f"🔍 _generate_markdown: LLM response preview: {raw[:200]}...")
+        try:
+            from json_repair import repair_json
+            print(f"🔍 _generate_markdown: Trying repair_json for {entity_name}")
+            repaired = repair_json(raw)
+            print(f"🔍 _generate_markdown: repair_json result length: {len(repaired)}")
+            plan = safe_json_loads(repaired, {"fields": {}, "sections": {}})
+        except Exception as e:
+            print(f"🔍 _generate_markdown: repair_json failed for {entity_name}: {e}")
+            try:
+                print(f"🔍 _generate_markdown: Trying direct safe_json_loads for {entity_name}")
+                plan = safe_json_loads(raw, {"fields": {}, "sections": {}})
+            except json.JSONDecodeError as e:
+                if "Extra data" in str(e):
+                    # Try to extract just the JSON part before the extra data
+                    try:
+                        # Find the end of the JSON object
+                        brace_count = 0
+                        json_end = 0
+                        for i, char in enumerate(raw):
+                            if char == '{':
+                                brace_count += 1
+                            elif char == '}':
+                                brace_count -= 1
+                                if brace_count == 0:
+                                    json_end = i + 1
+                                    break
+                        if json_end > 0:
+                            json_part = raw[:json_end]
+                            plan = safe_json_loads(json_part, {"fields": {}, "sections": {}})
+                        else:
+                            plan = {"fields": {}, "sections": {}}
+                    except Exception:
+                        plan = {"fields": {}, "sections": {}}
+                else:
+                    plan = {"fields": {}, "sections": {}}
+            except Exception:
+                plan = {"fields": {}, "sections": {}}
+
+        def cite(cites):
+            return " ".join([f"[^{source_file}:{c.get('chunk_id','0')}]" for c in (cites or [])])
+
+        # Render minimal markdown
+        md = [f"# {wiki_type}: {entity_name}\n"]
+        for fld, obj in (plan.get("fields") or {}).items():
+            if obj and obj.get("text"):
+                md.append(f"**{fld}**  \n{obj['text']} {cite(obj.get('citations'))}\n")
+        for sec, bullets in (plan.get("sections") or {}).items():
+            if bullets:
+                md.append(f"## {sec}")
+                for b in bullets:
+                    if b.get("bullet"):
+                        md.append(f"- {b['bullet']} {cite(b.get('citations'))}")
+        if (plan.get("fields") or {}) or (plan.get("sections") or {}):
+            md.append("\n## References")
+            md.append(f"[^{source_file}:0]: {source_file}")
+        body_md = "\n".join(md)
 
         # Front matter
         front = self._yaml_front_matter({
@@ -543,10 +891,12 @@ SOURCE TEXT (use only this):
         - Always link wiki -> Document in Neo4j using CITES edge.
         Returns path to the wiki.
         """
+        print(f"🔍 upsert_entity_wiki: Processing entity {entity}")
         self.ensure_entity_schema_basics()
 
         wiki_type = self._map_entity_to_wiki_type(entity["type"])
         name = entity["name"]
+        print(f"🔍 upsert_entity_wiki: Mapped to wiki_type: {wiki_type}, name: {name}")
 
         # 🟢 Canonicalize the entity name using Neo4j
         driver = GraphDatabase.driver(
@@ -567,80 +917,33 @@ SOURCE TEXT (use only this):
             with open(path, "r", encoding="utf-8") as f:
                 existing = f.read()
             prompt = f"""
-    # ROLE: Wiki Content Merger
+You will update an existing wiki page using a new source. Return UPDATED MARKDOWN ONLY.
 
-    You are a meticulous research assistant tasked with updating an existing wiki page with new information from a source document. Your job is to merge ONLY factual information while preserving existing content.
+TARGET: {name} ({wiki_type})
+NEW SOURCE: {source_file}
 
-    ## TASK: Update existing wiki page
+EXISTING WIKI PAGE:
+{existing}
 
-    **Target Entity**: {name}
-    **Wiki Type**: {wiki_type}
-    **New Source Document**: {source_file}
+RULES:
+- Add only facts explicitly present in NEW_SOURCE_TEXT (no world knowledge).
+- Do not remove existing content unless the new source contradicts it, in which case replace and keep the rest.
+- Do not add placeholders for missing info.
+- Any new or changed sentence must include a footnote [^{source_file}:0].
+- Keep the current structure and YAML front matter; only modify content fields/sections that have new facts.
 
-    ## CHAIN OF THOUGHT PROCESS:
-
-    ### Step 1: Analyze Existing Content
-    Review the current wiki page below to understand:
-    - What information is already present
-    - What fields are filled vs. empty
-    - What sub-sections exist and their content
-
-    ### Step 2: Analyze New Document
-    Carefully read the new document excerpt to identify:
-    - What NEW factual information is explicitly stated about {name}
-    - What statistics, facts, or details are mentioned that aren't already in the wiki
-    - What is NOT mentioned (important for avoiding hallucination)
-
-    ### Step 3: Merge Strategy
-    Determine what to add/modify:
-    - Fill empty fields ONLY with information explicitly found in the new document
-    - Add new bullet points to existing sub-sections ONLY if the new document provides additional facts
-    - Do NOT duplicate existing information
-    - Do NOT modify existing information unless the new document provides corrections
-
-    ## EXISTING WIKI PAGE:
-    {existing}
-
-    ## NEW SOURCE DOCUMENT:
-    \"\"\"{doc_text[:6000]}\"\"\"
-
-    ## STRICT MERGE RULES:
-
-    ### ZERO TOLERANCE FOR HALLUCINATION:
-    - **ONLY** add information explicitly stated in the new document
-    - **NEVER** add information from your general knowledge
-    - **NEVER** infer or assume facts not directly stated
-    - **PRESERVE** all existing content unless explicitly contradicted by the new document
-
-    ### SOURCE VERIFICATION:
-    For every new piece of information you add, you must be able to point to the exact location in the new document where it appears.
-
-    ### MERGE REQUIREMENTS:
-    - Keep existing structure and content intact
-    - ONLY add/modify where the new document provides **new factual info** that is EXPLICITLY stated
-    - Fill missing fields ONLY with information explicitly found in the new document
-    - Append brief new bullets to matching sub-sections; don't duplicate
-    - Add a **References** section at the end if not present, with a bullet for the new source file
-
-    ## OUTPUT FORMAT:
-    - Full updated Markdown with YAML front matter
-    - Preserve existing structure
-    - Add new information only where explicitly found in the new document
-
-    ## FINAL CHECK:
-    Before submitting, verify that every new piece of information can be traced back to the new source document above. If you cannot point to the exact location of a fact, do not include it.
-    """
+NEW_SOURCE_TEXT:
+\"\"\"{doc_text[:6000]}\"\"\"
+"""
             updated = self.llm.invoke(prompt).strip()
+            # Prune any legacy placeholders before writing
+            updated = self._prune_placeholders(updated)
             with open(path, "w", encoding="utf-8") as f:
                 f.write(updated + "\n")
             print(f"🧩 Updated entity wiki: {path}")
         else:
             # CREATE: generate from schema + doc
-            gen_prompt = self._build_generation_prompt(
-                wiki_type=wiki_type, subtype=None, schema=schema,
-                entity_name=name, source_file=source_file, doc_text=doc_text
-            )
-            md = self.llm.invoke(gen_prompt)
+            md = self._generate_markdown(wiki_type, None, name, source_file, doc_text)
             front = self._yaml_front_matter({
                 "wiki_type": wiki_type,
                 "title": name,
@@ -778,6 +1081,13 @@ SOURCE TEXT (use only this):
         
         print(f"🔗 Added brand reference to {installment_name} wiki")
 
-
-
-
+    def _prune_placeholders(self, md: str) -> str:
+        """
+        Remove legacy placeholder lines from older pages.
+        """
+        lines = []
+        for ln in md.splitlines():
+            if re.search(r'\[No new information provided', ln, re.I):
+                continue
+            lines.append(ln)
+        return re.sub(r'\n{3,}', '\n\n', "\n".join(lines)).strip() + "\n"

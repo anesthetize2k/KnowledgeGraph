@@ -1,0 +1,3804 @@
+{
+  "candidates": [
+    {
+      "entity_name": "Assassin's Creed",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Brazil",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Mexico",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "The USA",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Spain",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Italy",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "China",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 3,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "3 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Indonesia",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "India",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Japan",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Germany",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "The Netherlands",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 3,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "3 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Sweden",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "South Korea",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Canada",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "France",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "The UK",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Belgium",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Poland",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Russia",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Turkey",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Australia",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "AC - Brand Awareness & Love 2024_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "AC",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "AC - Brand Diagnosis 2-pager 2019_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Historia magazine",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "AC - Brand Diagnosis 2-pager 2019_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Discovery Tours",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "AC - Brand Diagnosis 2-pager 2019_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Gladiator",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "AC - Brand Diagnosis 2-pager 2019_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Versailles",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "AC - Brand Diagnosis 2-pager 2019_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "The Man in the High Castle",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "AC - Brand Diagnosis 2-pager 2019_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Batman",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "AC - Brand Diagnosis 2-pager 2019_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Matrix",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "AC - Brand Diagnosis 2-pager 2019_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "The Lord of the Rings",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "AC - Brand Diagnosis 2-pager 2019_reformat.md",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Historia",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "AC - Brand Diagnosis 2-pager 2019_reformat.md",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin’s Creed Valhalla",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "Valhalla - 1st year Game Performance_summary.md",
+      "facts_count": 17,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "17 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "ACV",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "Valhalla - 1st year Game Performance_summary.md",
+      "facts_count": 32,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "32 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "Valhalla - 1st year Game Performance_summary.md",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "AC Odyssey",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "Valhalla - 1st year Game Performance_summary.md",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "AC Origins",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "Valhalla - 1st year Game Performance_summary.md",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin's Creed Valhalla",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "Valhalla - 1st year Game Performance_summary.md",
+      "facts_count": 16,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "16 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin’s Creed",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "AC - State of RPG_summary.docx",
+      "facts_count": 9,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "9 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Origins",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "AC - State of RPG_summary.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Odyssey",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "AC - State of RPG_summary.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Valhalla",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "AC - State of RPG_summary.docx",
+      "facts_count": 4,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "4 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Skyrim",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "AC - State of RPG_summary.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Witcher",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "AC - State of RPG_summary.docx",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Mass Effect",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "AC - State of RPG_summary.docx",
+      "facts_count": 2,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "2 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "AC Red",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "AC - State of RPG_summary.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "AC Mirage",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "AC - State of RPG_summary.docx",
+      "facts_count": 5,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "5 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "AC - State of RPG_summary.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin’s Creed Shadows",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "ACSH_AdHoc_PostMortem_summary.docx",
+      "facts_count": 13,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "13 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "ACSH",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "ACSH_AdHoc_PostMortem_summary.docx",
+      "facts_count": 10,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "10 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "TikTok",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "ACSH_AdHoc_PostMortem_summary.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "YouTube",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "ACSH_AdHoc_PostMortem_summary.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PlayStation",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "ACSH_AdHoc_PostMortem_summary.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Steam",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "ACSH_AdHoc_PostMortem_summary.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Microsoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "ACSH_AdHoc_PostMortem_summary.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Black Myth: Wukong",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "ACSH_AdHoc_PostMortem_summary.docx",
+      "facts_count": 2,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "2 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Spider-Man 2",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "ACSH_AdHoc_PostMortem_summary.docx",
+      "facts_count": 2,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "2 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Elden Ring",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "ACSH_AdHoc_PostMortem_summary.docx",
+      "facts_count": 2,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "2 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Monster Hunter Wilds",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "ACSH_AdHoc_PostMortem_summary.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin’s Creed",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "AC - State of RPG_summary.docx",
+      "facts_count": 14,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "14 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "ACSH_AdHoc_PostMortem_summary.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin’s Creed Valhalla",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "Valhalla - Post-launch diagnosis Apr 21_summary.md",
+      "facts_count": 30,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "30 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "Valhalla - Post-launch diagnosis Apr 21_summary.md",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Brain Value",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "Valhalla - Post-launch diagnosis Apr 21_summary.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "ACV",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "Valhalla - Post-launch diagnosis Apr 21_summary.md",
+      "facts_count": 12,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "12 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Wrath of the Druids",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "Valhalla - Post-launch diagnosis Apr 21_summary.md",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ireland",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "Valhalla - Post-launch diagnosis Apr 21_summary.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Siege of Paris",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "Valhalla - Post-launch diagnosis Apr 21_summary.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Paris",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "Valhalla - Post-launch diagnosis Apr 21_summary.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ragnarok",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "Valhalla - Post-launch diagnosis Apr 21_summary.md",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Middle East",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "Valhalla - Post-launch diagnosis Apr 21_summary.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "North America",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "Valhalla - Post-launch diagnosis Apr 21_summary.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Basim",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "Valhalla - Post-launch diagnosis Apr 21_summary.md",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Hytham",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "Valhalla - Post-launch diagnosis Apr 21_summary.md",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "AC",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "[AC] EMERALD - Exploration for AC online - Summer 2024 - GSI.docx",
+      "facts_count": 10,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "10 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Codename Emerald",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] EMERALD - Exploration for AC online - Summer 2024 - GSI.docx",
+      "facts_count": 6,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "6 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Codename MARS",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] MARS - Exploration - July 2025 Pre Pitch - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin’s Creed",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "[AC] MARS - Exploration - July 2025 Pre Pitch - GSI.docx",
+      "facts_count": 15,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "15 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Shadows",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] MARS - Exploration - July 2025 Pre Pitch - GSI.docx",
+      "facts_count": 6,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "6 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "AC Brand Loyal",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] MARS - Exploration - July 2025 Pre Pitch - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "AC Brand Casual",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] MARS - Exploration - July 2025 Pre Pitch - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Origins",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] MARS - Exploration - July 2025 Pre Pitch - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Odyssey",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] MARS - Exploration - July 2025 Pre Pitch - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Valhalla",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] MARS - Exploration - July 2025 Pre Pitch - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "US",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] MARS - Exploration - July 2025 Pre Pitch - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "France",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] MARS - Exploration - July 2025 Pre Pitch - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Shadows",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 4 Q12025 competition January 2025 - GSI.docx",
+      "facts_count": 7,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "7 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Codename RED",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] RED - GEM synthesis - Winter 2024 - GSI.docx",
+      "facts_count": 15,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "15 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Shadows",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 8,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "8 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Shadows",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 1 Post reveal May 2024 - GSI.docx",
+      "facts_count": 7,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "7 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Shadows",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 16,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "16 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "GEM",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - GEM synthesis - Winter 2024 - GSI.docx",
+      "facts_count": 6,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "6 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 4 Q12025 competition January 2025 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 1 Post reveal May 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "GSI",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "[AC] RED - GEM synthesis - Winter 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 5,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "5 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Gaming PC",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Gaming PC",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 4 Q12025 competition January 2025 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Gaming PC",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Gaming PC",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 1 Post reveal May 2024 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "[AC] RED - GEM synthesis - Winter 2024 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PS5",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PS5",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 4 Q12025 competition January 2025 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PS5",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PS4",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PS5",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 1 Post reveal May 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "France",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - GEM synthesis - Winter 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PS4",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 4 Q12025 competition January 2025 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PS4",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox Series S",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PS4",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 1 Post reveal May 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox Series X",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Canada",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - GEM synthesis - Winter 2024 - GSI.docx",
+      "facts_count": 6,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "6 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox Series S",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 4 Q12025 competition January 2025 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox Series S",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 1 Post reveal May 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox One",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox Series S",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox Series X",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Nintendo Switch",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox Series X",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 4 Q12025 competition January 2025 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox Series X",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 1 Post reveal May 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "COD BO6",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Black Myth: Wukong",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox One",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox One",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 1 Post reveal May 2024 - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox One",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 4 Q12025 competition January 2025 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Nintendo Switch",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 1 Post reveal May 2024 - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Star Wars Outlaws",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "AC",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 1 Post reveal May 2024 - GSI.docx",
+      "facts_count": 6,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "6 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Nintendo Switch",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Yasuke",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Nintendo Switch",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 4 Q12025 competition January 2025 - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Brazil",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Monster Hunter Wilds",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 4 Q12025 competition January 2025 - GSI.docx",
+      "facts_count": 8,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "8 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Japan",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 7,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "7 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Mexico",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "USA",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Black Friday",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 1 Post reveal May 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "US",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "France",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "UK",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Germany",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Spain",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "The Netherlands",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Italy",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Sweden",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "China",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "South Korea",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 3 Post Delay November 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Indonesia",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "India",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Japan",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Germany",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "The Netherlands",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Sweden",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "South Korea",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] RED - Pre launch monitoring - Wave 2 Post Ubisoft Forward July 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "FC",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "[FC] BRAND - Brand Framework.docx",
+      "facts_count": 11,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "11 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "[FC] BRAND - Brand Framework.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "FARCRY",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "[FC] BRAND - Brand Framework.docx",
+      "facts_count": 6,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "6 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Crytek",
+      "wiki_type": "Studio",
+      "subtype": null,
+      "file": "[FC] BRAND - Brand Framework.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Jason Brody",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "[FC] BRAND - Brand Framework.docx",
+      "facts_count": 4,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "4 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "[FC] BRAND - Brand Diagnosis July 2022.docx",
+      "facts_count": 12,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "12 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry 3",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Brand Diagnosis July 2022.docx",
+      "facts_count": 7,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "7 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "UBISOFT",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "[FC] BRAND - Brand Diagnosis July 2022.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Call of Duty: Black Ops II",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Brand Diagnosis July 2022.docx",
+      "facts_count": 2,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "2 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Battlefield 3",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Brand Diagnosis July 2022.docx",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Call of Duty: Modern Warfare 3",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Brand Diagnosis July 2022.docx",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Halo 4",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Brand Diagnosis July 2022.docx",
+      "facts_count": 1,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "1 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Grand Theft Auto IV",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Brand Diagnosis July 2022.docx",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Red Dead Redemption",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Brand Diagnosis July 2022.docx",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Fallout",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Brand Diagnosis July 2022.docx",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Assassin's Creed",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Brand Diagnosis July 2022.docx",
+      "facts_count": 1,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "1 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Blackbird",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Bundle Focus Groups February 2024.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Maverick",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Bundle Focus Groups February 2024.docx",
+      "facts_count": 5,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "5 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "[FC] BRAND - Bundle Focus Groups February 2024.docx",
+      "facts_count": 3,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "3 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Chicago",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[FC] BRAND - Bundle Focus Groups February 2024.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "[FC] BRAND - Bundle 360 Analysis.docx",
+      "facts_count": 10,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "10 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Blackbird",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Bundle 360 Analysis.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Maverick",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Bundle 360 Analysis.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PlayStation",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] BRAND - Bundle 360 Analysis.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] BRAND - Bundle 360 Analysis.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PC",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] BRAND - Bundle 360 Analysis.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "FC6",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Bundle 360 Analysis.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin's Creed",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "[FC] BRAND - Bundle 360 Analysis.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 16,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "16 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry 2",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry 3",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Far Cry 3: Blood Dragon",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry 4",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry Primal",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Far Cry 5",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry New Dawn",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry 6",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 16,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "16 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Giancarlo Esposito",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Metacritic",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry: Blackbird",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 6,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "6 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PC",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Blackbird",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 9,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "9 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PlayStation",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PS4",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "US",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 8,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "8 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PS5",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Europe",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox One",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Damien",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Murph",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox Series X",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] BRAND - Games Sum Up.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Tina",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Krissy",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Laura Beckett",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Leah Beckett",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Brynne Beckett",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Mark Beckett",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Harris Beckett",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Dean Beckett",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Charles Beckett",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Keaton Beckett",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Malcom",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Isaac",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Game Elements April 2024.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry 5",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 15,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "15 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry 4",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 4,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "4 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "MURL",
+      "wiki_type": "Studio",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Montreal’s User Research Lab",
+      "wiki_type": "Studio",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Project Maverick 1.0",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 13,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "13 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "CMK Prism Study",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 4,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "4 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry 6",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] FC6 - Post Launch D+60 2021.docx",
+      "facts_count": 9,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "9 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin’s Creed",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "MAVERICK 1.0",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 9,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "9 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "France",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Germany",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry 5",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] FC6 - Post Launch D+60 2021.docx",
+      "facts_count": 4,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "4 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Paris",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "US",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 5,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "5 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Chicago",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "UK",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "FC5",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] FC6 - Post Launch D+60 2021.docx",
+      "facts_count": 9,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "9 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "France",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "YouTube",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "[FC] FC6 - Post Launch D+60 2021.docx",
+      "facts_count": 13,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "13 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Twitter",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "US",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 4,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "4 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Forums",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Facebook",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Reddit",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Escape from Tarkov",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "ACO",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] FC6 - Post Launch D+60 2021.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Amazon",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Metacritic",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[FC] FC5 - Post Launch 2018.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Rust",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "ACOD",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] FC6 - Post Launch D+60 2021.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Fortnite",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PUBG",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Apex Legends",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "ACV",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] FC6 - Post Launch D+60 2021.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Call of Duty: Warzone 2.0",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Call of Duty",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 2,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "2 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Anton Castillo",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "[FC] FC6 - Post Launch D+60 2021.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "DMZ",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "[FC] FC6 - Post Launch D+60 2021.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Blackbird",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Marketing elements 2025.docx",
+      "facts_count": 7,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "7 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "FC6",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "[FC] BLACKBIRD - Marketing elements 2025.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "FC5",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Alaska",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 4,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "4 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "US",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[FC] FC6 - Post Launch D+60 2021.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "France",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[FC] FC6 - Post Launch D+60 2021.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Great American North",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[FC] MAVERICK 1.0 - Concept Test March 2023.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "UK",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[FC] FC6 - Post Launch D+60 2021.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry Maverick",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] MAVERICK 2.0 - Game Elements September 2024.docx",
+      "facts_count": 10,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "10 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "[FC] MAVERICK 2.0 - Game Elements September 2024.docx",
+      "facts_count": 4,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "4 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Maverick",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] MAVERICK 2.0 - Game Elements September 2024.docx",
+      "facts_count": 7,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "7 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Blackbird",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[FC] MAVERICK 2.0 - Game Elements September 2024.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft Entertainment SA",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 15,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "15 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubi Soft Entertainment SA",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 9,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "9 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Anno",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin's Creed",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Driver",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Far Cry",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Just Dance",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Prince of Persia",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Rabbids",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Rayman",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Tom Clancy's",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Watch Dogs",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Yves Guillemot",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Guillemot Informatique",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 4,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "4 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Guillemot Corporation",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 12,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "12 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Shadows",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] BRAND - Appeal of settings and archetypes - 2025 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "AC Shadows",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] BRAND - Appeal of settings and archetypes - 2025 - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Fallout series",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] BRAND - Appeal of settings and archetypes - 2025 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Guillemot Family",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 9,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "9 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "[AC] BRAND - Appeal of settings and archetypes - 2025 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Christian Guillemot",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 5,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "5 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Claude Guillemot",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Gaming PC",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] BRAND - Appeal of settings and archetypes - 2025 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Gérard Guillemot",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PS5",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] BRAND - Appeal of settings and archetypes - 2025 - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Michel Guillemot",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "PS4",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] BRAND - Appeal of settings and archetypes - 2025 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox Series S",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] BRAND - Appeal of settings and archetypes - 2025 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox Series X",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] BRAND - Appeal of settings and archetypes - 2025 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Guillemot Brothers",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 8,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "8 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Xbox One",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] BRAND - Appeal of settings and archetypes - 2025 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Nintendo Switch",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "[AC] BRAND - Appeal of settings and archetypes - 2025 - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "US",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Appeal of settings and archetypes - 2025 - GSI.docx",
+      "facts_count": 6,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "6 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin’s Creed",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "France",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Appeal of settings and archetypes - 2025 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Brazil",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Brazil",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Appeal of settings and archetypes - 2025 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Japan",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Appeal of settings and archetypes - 2025 - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Mexico",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "China",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Appeal of settings and archetypes - 2025 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "the USA",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Spain",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Italy",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "China",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Indonesia",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "India",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Japan",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 5,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "5 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Germany",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "The Netherlands",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Sweden",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "South Korea",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Canada",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "France",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "The UK",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Belgium",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Poland",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Russia",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Turkey",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "[AC] BRAND - Awareness and Love KPIs - 2024 - GSI.docx",
+      "facts_count": 4,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "4 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "POSTMORTEM AD HOCS",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "ACSH_AdHoc_PostMortem_summary.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin’s Creed Shadows",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "GSI - Shadows Early Buyers Perception (D+5)_summary.docx",
+      "facts_count": 21,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "21 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ubisoft",
+      "wiki_type": "Company",
+      "subtype": null,
+      "file": "GSI - Shadows Early Buyers Perception (D+5)_summary.docx",
+      "facts_count": 4,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "4 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin’s Creed Shadows",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "GSI - Shadows Non-buyers Western & Japan_summary.docx",
+      "facts_count": 33,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "33 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Odyssey",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "GSI - Shadows Early Buyers Perception (D+5)_summary.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Valhalla",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "GSI - Shadows Early Buyers Perception (D+5)_summary.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin’s Creed Shadows",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "GSI - Shadows D+30 Perception_summary.docx",
+      "facts_count": 27,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "27 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "ACSH",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "GSI - Shadows Non-buyers Western & Japan_summary.docx",
+      "facts_count": 19,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "19 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Naoe",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "GSI - Shadows Early Buyers Perception (D+5)_summary.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ezio",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "GSI - Shadows Early Buyers Perception (D+5)_summary.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Altair",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "GSI - Shadows Early Buyers Perception (D+5)_summary.docx",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin’s Creed",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "GSI - Shadows Non-buyers Western & Japan_summary.docx",
+      "facts_count": 19,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "19 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Valhalla",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "GSI - Shadows D+30 Perception_summary.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ghost of Tsushima",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "GSI - Shadows Early Buyers Perception (D+5)_summary.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Western markets",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "GSI - Shadows Non-buyers Western & Japan_summary.docx",
+      "facts_count": 10,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "10 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin's Creed",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "[AC] BRAND - Brand Lineup Periods - 2025 - GSI.docx",
+      "facts_count": 24,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "24 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Mirage",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "GSI - Shadows D+30 Perception_summary.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Cyberpunk 2077",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "GSI - Shadows Early Buyers Perception (D+5)_summary.docx",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Origins",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "GSI - Shadows D+30 Perception_summary.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Hogwarts Legacy",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "GSI - Shadows Early Buyers Perception (D+5)_summary.docx",
+      "facts_count": 0,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "0 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Odyssey",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "GSI - Shadows D+30 Perception_summary.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin's Creed",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "[AC] BRAND - Brand Diagnosis Details per Country - 2024 - GSI.docx",
+      "facts_count": 10,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "10 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Naoe",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "GSI - Shadows D+30 Perception_summary.docx",
+      "facts_count": 5,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "5 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Steam",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "GSI - Shadows Early Buyers Perception (D+5)_summary.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Metacritic",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "GSI - Shadows Early Buyers Perception (D+5)_summary.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Google",
+      "wiki_type": "Platform",
+      "subtype": null,
+      "file": "GSI - Shadows Early Buyers Perception (D+5)_summary.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "GTA 6",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "GSI - Shadows Non-buyers Western & Japan_summary.docx",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Ghost of Yotei",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "GSI - Shadows Non-buyers Western & Japan_summary.docx",
+      "facts_count": 0,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "0 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Assassin's Creed 2",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "[AC] BRAND - Brand Lineup Periods - 2025 - GSI.docx",
+      "facts_count": 4,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "4 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Borderlands 4",
+      "wiki_type": "Installment",
+      "subtype": null,
+      "file": "GSI - Shadows Non-buyers Western & Japan_summary.docx",
+      "facts_count": 1,
+      "ubisoft_linked": false,
+      "merit": false,
+      "reason": "1 explicit fact(s); no Ubisoft linkage"
+    },
+    {
+      "entity_name": "Feudal Japan",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "GSI - Shadows Non-buyers Western & Japan_summary.docx",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "AC",
+      "wiki_type": "Brand",
+      "subtype": null,
+      "file": "[AC] BRAND - Brand Framework - 2023 - GSI.docx",
+      "facts_count": 15,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "15 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Saint-Mandé",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Annecy",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Shanghai",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Montreal",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Milan",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Brittany",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "United Kingdom",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Christian",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Claude",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 4,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "4 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Gérard",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 2,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "2 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Michel",
+      "wiki_type": "Person",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 3,
+      "ubisoft_linked": true,
+      "merit": true,
+      "reason": "3 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Paris",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    },
+    {
+      "entity_name": "Créteil",
+      "wiki_type": "Market",
+      "subtype": null,
+      "file": "ubisoft_wikipedia.md",
+      "facts_count": 1,
+      "ubisoft_linked": true,
+      "merit": false,
+      "reason": "1 explicit fact(s); linked to Ubisoft"
+    }
+  ]
+}

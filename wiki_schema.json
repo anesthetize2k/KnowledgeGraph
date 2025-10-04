@@ -1,215 +1,218 @@
 {
-    "wiki_types": {
-      "Research Study": {
-        "fields": [
-          "study_name",
-          "date",
-          "methodology",
-          "coverage",
-          "subtype"
-        ],
-        "sub_sections": [
-          "Key Findings",
-          "Metrics",
-          "Insights",
-          "Recommendations"
-        ],
-        "links": [
-          "Brand",
-          "Installment",
-          "Company",
-          "Market",
-          "Platform",
-          "Person",
-          "Time Period"
-        ]
-      },
-      "Brand": {
-        "fields": [
-          "name",
-          "owner",
-          "first_release",
-          "tagline"
-        ],
-        "sub_sections": [
-          "Overview",
-          "Installments",
-          "Audience",
-          "Notable Moments"
-        ],
-        "links": [
-          "Installment",
-          "Company",
-          "Market"
-        ]
-      },
-      "Installment": {
-        "fields": [
-          "name",
-          "release_date",
-          "platforms",
-          "developer",
-          "genre"
-        ],
-        "sub_sections": [
-          "Overview",
-          "Story",
-          "Gameplay",
-          "Reception"
-        ],
-        "links": [
-          "Brand",
-          "Company",
-          "Platform"
-        ]
-      },
-      "Company": {
-        "fields": [
-          "name",
-          "founded",
-          "hq",
-          "ceo",
-          "description"
-        ],
-        "sub_sections": [
-          "Studios",
-          "Brands",
-          "Strategy",
-          "Financials",
-          "Leadership"
-        ],
-        "links": [
-          "Studio",
-          "Brand",
-          "Person",
-          "Market"
-        ]
-      },
-      "Studio": {
-        "fields": [
-          "name",
-          "parent_company",
-          "hq",
-          "notable_titles"
-        ],
-        "sub_sections": [
-          "Teams",
-          "Projects",
-          "Culture"
-        ],
-        "links": [
-          "Company",
-          "Brand"
-        ]
-      },
-      "Person": {
-        "fields": [
-          "name",
-          "role",
-          "affiliation",
-          "bio"
-        ],
-        "sub_sections": [
-          "Career",
-          "Notable Work",
-          "Quotes"
-        ],
-        "links": [
-          "Company",
-          "Studio",
-          "Brand",
-          "Installment"
-        ]
-      },
-      "Platform": {
-        "fields": [
-          "name",
-          "maker",
-          "generation",
-          "release_date"
-        ],
-        "sub_sections": [
-          "Hardware",
-          "Services",
-          "Installed Base"
-        ],
-        "links": [
-          "Installment",
-          "Company",
-          "Market"
-        ]
-      },
-      "Market": {
-        "fields": [
-          "name",
-          "region_code"
-        ],
-        "sub_sections": [
-          "Size",
-          "Trends",
-          "Competitors"
-        ],
-        "links": [
-          "Brand",
-          "Installment",
-          "Company",
-          "Platform"
-        ]
-      },
-      "Post Mortem": {
-        "fields": [
-          "game_name",
-          "release_date",
-          "analysis_period",
-          "analyst",
-          "scope"
-        ],
-        "sub_sections": [
-          "Executive Summary",
-          "Performance Metrics",
-          "Sales Analysis",
-          "Player Engagement",
-          "Critical Reception",
-          "Technical Performance",
-          "Marketing Effectiveness",
-          "Competitive Analysis",
-          "Key Learnings",
-          "Recommendations"
-        ],
-        "links": [
-          "Brand",
-          "Installment",
-          "Company",
-          "Studio",
-          "Platform",
-          "Market",
-          "Person"
-        ]
-      },
-      "Other": {
-        "fields": [
-          "document_name",
-          "date",
-          "author",
-          "category",
-          "description"
-        ],
-        "sub_sections": [
-          "Overview",
-          "Key Points",
-          "Summary",
-          "Notes"
-        ],
-        "links": [
-          "Brand",
-          "Installment",
-          "Company",
-          "Studio",
-          "Platform",
-          "Market",
-          "Person"
-        ]
-      }
+  "wiki_types": {
+    "Research Study": {
+      "fields": [
+        "study_name",
+        "date",
+        "methodology",
+        "coverage",
+        "subtype",
+        "author"
+      ],
+      "sub_sections": [
+        "Key Findings",
+        "Metrics",
+        "Insights",
+        "Recommendations"
+      ],
+      "links": [
+        "Brand",
+        "Installment",
+        "Company",
+        "Market",
+        "Platform",
+        "Person"
+      ]
+    },
+    "Brand": {
+      "fields": [
+        "name",
+        "owner",
+        "first_release",
+        "tagline"
+      ],
+      "sub_sections": [
+        "Overview",
+        "Installments",
+        "Audience",
+        "Notable Moments"
+      ],
+      "links": [
+        "Installment",
+        "Company",
+        "Market"
+      ]
+    },
+    "Installment": {
+      "fields": [
+        "name",
+        "release_date",
+        "platforms",
+        "developer",
+        "genre"
+      ],
+      "sub_sections": [
+        "Overview",
+        "Story",
+        "Gameplay",
+        "Reception",
+        "Post-Mortem & Learnings"
+      ],
+      "links": [
+        "Brand",
+        "Company",
+        "Studio",
+        "Platform"
+      ]
+    },
+    "Company": {
+      "fields": [
+        "name",
+        "founded",
+        "hq",
+        "ceo",
+        "description"
+      ],
+      "sub_sections": [
+        "Studios",
+        "Brands",
+        "Strategy",
+        "Financials",
+        "Leadership"
+      ],
+      "links": [
+        "Studio",
+        "Brand",
+        "Platform",
+        "Person",
+        "Market"
+      ]
+    },
+    "Studio": {
+      "fields": [
+        "name",
+        "parent_company",
+        "hq",
+        "notable_titles"
+      ],
+      "sub_sections": [
+        "Teams",
+        "Projects",
+        "Culture"
+      ],
+      "links": [
+        "Company",
+        "Brand",
+        "Installment"
+      ]
+    },
+    "Person": {
+      "fields": [
+        "name",
+        "role",
+        "affiliation",
+        "bio"
+      ],
+      "sub_sections": [
+        "Career",
+        "Notable Work",
+        "Quotes"
+      ],
+      "links": [
+        "Company",
+        "Studio",
+        "Brand",
+        "Installment"
+      ]
+    },
+    "Platform": {
+      "fields": [
+        "name",
+        "maker",
+        "generation",
+        "release_date"
+      ],
+      "sub_sections": [
+        "Hardware",
+        "Services",
+        "Installed Base"
+      ],
+      "links": [
+        "Installment",
+        "Company",
+        "Market"
+      ]
+    },
+    "Market": {
+      "fields": [
+        "name",
+        "region_code"
+      ],
+      "sub_sections": [
+        "Size",
+        "Trends",
+        "Competitors"
+      ],
+      "links": [
+        "Brand",
+        "Installment",
+        "Company",
+        "Platform"
+      ]
+    },
+    "Post Mortem": {
+      "fields": [
+        "game_name",
+        "release_date",
+        "analysis_period",
+        "analyst",
+        "scope"
+      ],
+      "sub_sections": [
+        "Executive Summary",
+        "Performance Metrics",
+        "Sales Analysis",
+        "Player Engagement",
+        "Critical Reception",
+        "Technical Performance",
+        "Marketing Effectiveness",
+        "Competitive Analysis",
+        "Key Learnings",
+        "Recommendations"
+      ],
+      "links": [
+        "Brand",
+        "Installment",
+        "Company",
+        "Studio",
+        "Platform",
+        "Market",
+        "Person"
+      ]
+    },
+    "Other": {
+      "fields": [
+        "document_name",
+        "date",
+        "author",
+        "category",
+        "description"
+      ],
+      "sub_sections": [
+        "Overview",
+        "Key Points",
+        "Summary",
+        "Notes"
+      ],
+      "links": [
+        "Brand",
+        "Installment",
+        "Company",
+        "Studio",
+        "Platform",
+        "Market",
+        "Person"
+      ]
     }
   }
-  
+}

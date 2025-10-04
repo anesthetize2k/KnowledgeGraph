@@ -17,3 +17,9 @@ schema_update_suggestions.json
 # Temporary files and scripts
 /temp/*
 !/temp/.gitkeep
+
+# Migration and test files (temporary)
+migrate_to_db.py
+test_db_utils.py
+test_wiki_agent.py
+test_research_wiki.py

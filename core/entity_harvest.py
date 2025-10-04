@@ -2,7 +2,7 @@
 import json
 import re
 from typing import List, Dict
-from litellm_wrapper import LiteLLMChat
+from .litellm_wrapper import LiteLLMChat
 
 ALLOWED_ENTITY_TYPES = [
     "brand","installment","studio","company","publisher","platform","market","person"

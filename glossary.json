@@ -1,0 +1,123 @@
+{
+  "synonyms": {
+    "Assassin's Creed": [
+      "AC",
+      "Assassin's Creed",
+      "Assassins Creed",
+      "AC Brand",
+      "AC Franchise",
+      "AC IP"
+    ],
+    "Assassin's Creed Origins": [
+      "ACO",
+      "Origins",
+      "AC Origins"
+    ],
+    "Assassin's Creed Valhalla": [
+      "ACV",
+      "Valhalla",
+      "AC Valhalla",
+      "Raven",
+      "Kingdoms"
+    ],
+    "Assassin's Creed Shadows": [
+      "ACSH",
+      "Shadows",
+      "AC Shadows",
+      "AC RED",
+      "RED",
+      "Project Red"
+    ],
+    "Assassin's Creed Odyssey": [
+      "ACOD",
+      "Odyssey",
+      "AC Odyssey"
+    ],
+    "Assassin's Creed HEXE": [
+      "NEO",
+      "Codename HEXE"
+    ],
+    "Assassin's Creed INVICTUS": [
+      "Codename INVICTUS"
+    ],
+    "Assassin's Creed Infinity": [
+      "Animus Hub",
+      "Hub"
+    ],
+    "Assassin's Creed Jade": [
+      "Jade"
+    ],
+    "Assassin's Creed Rebellion": [
+      "AC Mobile"
+    ],
+    "Assassin's Creed Mirage": [
+      "ACM",
+      "Rift",
+      "Mirage"
+    ],
+    "Assassin's Creed Syndicate": [
+      "ACS",
+      "Syndicate"
+    ],
+    "Assassin's Creed Rogue": [
+      "Rogue"
+    ],
+    "Assassin's Creed Unity": [
+      "Unity",
+      "ACU"
+    ],
+    "Assassin's Creed 4 Black Flag": [
+      "Assassin's Creed Black Flag",
+      "ACBF",
+      "AC4",
+      "Black Flag"
+    ],
+    "Assassin's Creed 3": [
+      "AC3"
+    ],
+    "Assassin's Creed Revelations": [
+      "ACR",
+      "Revelations"
+    ],
+    "Assassin's Creed Brotherhood": [
+      "ACB",
+      "Brotherhood"
+    ],
+    "Assassin's Creed 2": [
+      "AC2"
+    ],
+    "Assassin's Creed 1": [
+      "AC1"
+    ],
+    "Ubisoft": [
+      "Ubi",
+      "Ubisoft Entertainment",
+      "Ubisoft SA"
+    ],
+    "PlayStation 5": [
+      "PS5",
+      "PlayStation 5",
+      "PS 5"
+    ],
+    "Xbox Series X": [
+      "XBSX",
+      "Xbox Series X",
+      "Xbox SX"
+    ],
+    "Xbox Series S": [
+      "XBSS",
+      "Xbox Series S"
+    ],
+    "Nintendo Switch": [
+      "Switch",
+      "Nintendo Switch",
+      "NS"
+    ],
+    "PC": [
+      "PC",
+      "Personal Computer",
+      "Windows PC"
+    ]
+  },
+  "description": "Reference glossary for common synonyms and acronyms. This is for reference only - actual synonym relationships should be extracted from text using the 'is_synonym_of' relationship type."
+}
